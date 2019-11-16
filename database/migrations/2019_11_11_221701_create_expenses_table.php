@@ -17,7 +17,7 @@ class CreateExpensesTable extends Migration
             $table->increments('expense_id')->primary();
             $table->string('expense_description');
             $table->integer('expense_bill_number');
-            $table->date('expense_date');
+            $table->dateTime('expense_date');
             $table->double('expense_amount');
             $table->integer('user_id')->unsigned();
             $table->timestamps();

@@ -18,12 +18,12 @@ class CreateCustomersTable extends Migration
             $table->string('customer_name', 45);
             $table->string('customer_last_name', 45);
             $table->date('customer_birthday');
-            $table->integer('customer_dni',13)->unique();
-            $table->string('customer_email', 45)->unique();
-            $table->integer('customer_cellphone', 8)->unique();
+            $table->integer('customer_dni')->unique();
+            $table->string('customer_email', 45)->unique()->nullable();
+            $table->integer('customer_cellphone')->unique();
             $table->string('customer_address', 45);
-            $table->integer('customer_active', 1);
-            
+            $table->integer('customer_active');
+
             $table->timestamps();
         });
     }

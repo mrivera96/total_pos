@@ -18,10 +18,10 @@ class CreateBranchsTable extends Migration
 			$table->string('branch_name', 45);
 			$table->string('description',45);
 			$table->date('branch_register_date');
-			$table->int('branch_register_number');
+			$table->integer('branch_register_number');
 			$table->string('branch_address',50);
-			$table->int('branch_open_hour');
-			$table->int('branch_close_hour');
+			$table->char('branch_open_hour');
+			$table->char('branch_close_hour');
             $table->timestamps();
         });
     }

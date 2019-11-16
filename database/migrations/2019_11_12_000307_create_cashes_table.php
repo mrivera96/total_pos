@@ -18,7 +18,7 @@ class CreateCashesTable extends Migration
             $table->string('cash_description', 45);
             $table->string('cash_pc_serial', 60);
             $table->string('cash_ticket_printer', 45);
-            $table->increments('cash_letter_printer', 45);
+            $table->string('cash_letter_printer', 45);
             $table->timestamps();
         });
     }
