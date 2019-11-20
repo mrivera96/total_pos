@@ -14,19 +14,18 @@ class CreatePurchasesTable extends Migration
     public function up()
     {
         Schema::create('purchases', function (Blueprint $table) {
-            $table->increments('purchase_id')->primary();
-            $table->integer('purchase_bill_number');
-            $table->dateTime('purchase_date');
-            $table->double('purchase_total');
+            $table->increments('id');
+            $table->integer('bill_number');
+            $table->dateTime('date');
+            $table->double('total');
             $table->integer('user_id')->unsigned();
             $table->integer('payment_type_id')->unsigned();
-            $table->integer('purchase_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('purchases', function (Blueprint $table){
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('payment_type_id')->references('payment_type_id')->on('payment_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

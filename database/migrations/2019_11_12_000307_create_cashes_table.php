@@ -14,11 +14,11 @@ class CreateCashesTable extends Migration
     public function up()
     {
         Schema::create('cashes', function (Blueprint $table) {
-            $table->increments('cash_id')->primary();
-            $table->string('cash_description', 45);
-            $table->string('cash_pc_serial', 60);
-            $table->string('cash_ticket_printer', 45);
-            $table->string('cash_letter_printer', 45);
+            $table->increments('id');
+            $table->string('description', 45);
+            $table->string('pc_serial', 60);
+            $table->string('ticket_printer', 45);
+            $table->string('letter_printer', 45);
             $table->timestamps();
         });
     }

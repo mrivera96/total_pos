@@ -12,9 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return redirect('/login');
 });
+Route::resource('/user', 'UserController');
+
+Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');

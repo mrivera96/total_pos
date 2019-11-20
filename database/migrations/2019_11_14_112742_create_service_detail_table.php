@@ -14,7 +14,7 @@ class CreateServiceDetailTable extends Migration
     public function up()
     {
         Schema::create('service_detail', function (Blueprint $table) {
-            $table->increments('service_detail_id')->primary();
+            $table->increments('id');
             $table->integer('quantity');
             $table->integer('service_id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -22,8 +22,8 @@ class CreateServiceDetailTable extends Migration
         });
 
         Schema::table('service_detail', function (Blueprint $table){
-            $table->foreign('service_id')->references('service_id')->on('services')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

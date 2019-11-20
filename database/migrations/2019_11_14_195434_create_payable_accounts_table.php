@@ -14,16 +14,16 @@ class CreatePayableAccountsTable extends Migration
     public function up()
     {
         Schema::create('payable_accounts', function (Blueprint $table) {
-            $table->increments('payable_account_id');
-            $table->dateTime('payable_account_date');
-            $table->char('payable_account_type');
-            $table->double('payable_account_amount');
+            $table->increments('id');
+            $table->dateTime('date');
+            $table->char('type');
+            $table->double('amount');
             $table->integer('purchase_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('payable_accounts', function (Blueprint $table){
-            $table->foreign('purchase_id')->references('purchase_id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
             });
     }
 

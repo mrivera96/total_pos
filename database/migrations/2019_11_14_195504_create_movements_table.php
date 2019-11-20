@@ -14,12 +14,12 @@ class CreateMovementsTable extends Migration
     public function up()
     {
         Schema::create('movements', function (Blueprint $table) {
-            $table->increments('movement_id')->primary();
-            $table->double('movement_initial_balance');
-            $table->double('movement_final_balance');
+            $table->increments('id');
+            $table->double('initial_balance');
+            $table->double('final_balance');
             $table->dateTime('open_date');
             $table->dateTime('close_date');
-            $table->tinyInteger('movement_status');
+            $table->tinyInteger('status');
             $table->integer('user_id')->unsigned();
             $table->integer('sale_id')->unsigned();
             $table->integer('purchase_id')->unsigned();
@@ -29,11 +29,11 @@ class CreateMovementsTable extends Migration
         });
 
         Schema::table('movements', function (Blueprint $table){
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('sale_id')->references('sale_id')->on('sales')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('purchase_id')->references('purchase_id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('expense_id')->references('expense_id')->on('expenses')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('cash_id')->references('cash_id')->on('cashes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('expense_id')->references('id')->on('expenses')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('cash_id')->references('id')->on('cashes')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

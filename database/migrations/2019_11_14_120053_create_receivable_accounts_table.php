@@ -14,16 +14,16 @@ class CreateReceivableAccountsTable extends Migration
     public function up()
     {
         Schema::create('receivable_accounts', function (Blueprint $table) {
-            $table->increments('receivable_account_id')->primary();
-            $table->dateTime('receivable_account_date');
-            $table->char('receivable_account_type');
-            $table->double('receivable_account_amount');
+            $table->increments('id');
+            $table->dateTime('date');
+            $table->char('type');
+            $table->double('amount');
             $table->integer('sale_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('receivable_accounts', function (Blueprint $table){
-            $table->foreign('sale_id')->references('sale_id')->on('sales')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

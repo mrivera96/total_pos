@@ -14,17 +14,17 @@ class CreateExpensesTable extends Migration
     public function up()
     {
         Schema::create('expenses', function (Blueprint $table) {
-            $table->increments('expense_id')->primary();
-            $table->string('expense_description');
-            $table->integer('expense_bill_number');
-            $table->dateTime('expense_date');
-            $table->double('expense_amount');
+            $table->increments('id');
+            $table->string('description');
+            $table->integer('bill_number');
+            $table->dateTime('date');
+            $table->double('amount');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('expenses', function (Blueprint $table){
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

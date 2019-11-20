@@ -14,14 +14,16 @@ class CreateBranchsTable extends Migration
     public function up()
     {
         Schema::create('branchs', function (Blueprint $table) {
-            $table->increments('branch_id')->primary();
-			$table->string('branch_name', 45);
+            $table->increments('id');
+			$table->string('name', 45);
 			$table->string('description',45);
-			$table->date('branch_register_date');
-			$table->integer('branch_register_number');
-			$table->string('branch_address',50);
-			$table->char('branch_open_hour');
-			$table->char('branch_close_hour');
+            $table->integer('cellphone_number');
+            $table->integer('phone_number');
+			$table->date('register_date');
+			$table->string('register_number',14);
+			$table->string('address',70);
+			$table->char('open_hour');
+			$table->char('close_hour');
             $table->timestamps();
         });
     }
