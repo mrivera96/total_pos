@@ -14,9 +14,9 @@
 Route::get('/', function () {
    return redirect('/login');
 });
-Route::resource('/user', 'UserController');
+Route::resource('/user', 'Users\UserController');
 
-Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
+Route::get('/user/delete/{id}', 'Users\UserController@delete')->name('user.delete');
 
 Auth::routes();
 
