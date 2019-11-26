@@ -45,7 +45,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                            {{__('Inventario')}}
+                            {{__('Productos')}}
                         </p>
 
                         <p class="pull-right-container">
@@ -56,13 +56,21 @@
                         <li class="nav-item ">
                             <a href="{{route('category.index')}}" class="nav-link">
                                 <i class="fas fa-th nav-icon"></i>
-                                <p>Categorías de Productos</p>
+                                <p>{{__('Categorías de Productos')}}</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{route('supplier.index')}}" class="nav-link">
+                                <i class="fas fa-truck nav-icon"></i>
+                                <p>{{__('Proveedores')}}</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('product.index')}}" class="nav-link">
                                 <i class="far fa-list-alt nav-icon"></i>
-                                <p>Ver todos los productos</p>
+                                <p>{{__('Ver todos los productos')}}</p>
                             </a>
                         </li>
                     </ul>

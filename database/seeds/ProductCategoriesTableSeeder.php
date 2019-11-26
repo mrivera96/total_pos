@@ -12,12 +12,11 @@ class ProductCategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $papeleria = new ProductCategory();
-        $papeleria->description = 'Papelería';
-        $impresion = new ProductCategory();
-        $impresion->description = 'Impresión';
 
-        $papeleria->save();
-        $impresion->save();
+      ProductCategory::insert([
+        ['description'   =>  'Papelería'],
+        ['description'    =>  'Impresión']
+      ]);
+
     }
 }

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
-                <thead class="bg-cyan table-head-fixed">
+                <thead >
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col"></th>
@@ -35,6 +35,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

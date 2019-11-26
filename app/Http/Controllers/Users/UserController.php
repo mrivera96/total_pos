@@ -35,7 +35,7 @@ class UserController extends Controller
         }
         $title = 'Usuarios';
         $users = User::where('status', 1)->get();
-        return view('users.show', compact(['title', 'users']));
+        return view('users.index', compact(['title', 'users']));
     }
 
     /**

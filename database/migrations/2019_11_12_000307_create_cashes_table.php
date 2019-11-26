@@ -15,7 +15,7 @@ class CreateCashesTable extends Migration
     {
         Schema::create('cashes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description', 45);
+            $table->string('description', 100);
             $table->string('pc_serial', 60);
             $table->string('ticket_printer', 45);
             $table->string('letter_printer', 45);

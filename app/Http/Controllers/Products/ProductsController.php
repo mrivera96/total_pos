@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Categories;
+namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use App\ProductCategory;
 use Illuminate\Http\Request;
 
-class ProductCategoriesController extends Controller
+class ProductsController extends Controller
 {
     /**
-     * ProductCategoriesController constructor.
+     * ProductsController constructor.
      */
     public function __construct()
     {
@@ -25,11 +23,9 @@ class ProductCategoriesController extends Controller
      */
     public function index()
     {
-        $title = 'Categorías de Productos';
+        $title = 'Productos';
 
-        $categories = ProductCategory::all();
 
-        return view('categories.index', compact(['title', 'categories']));
     }
 
     /**
@@ -48,17 +44,9 @@ class ProductCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $category)
+    public function store(Request $request)
     {
-        $newCategory = new ProductCategory();
-        $newCategory->description   =   $category->description;
-        $status = 0;
-        if($newCategory->save()){
-            $status = 1;
-        }
-        $title='Nueva Categoría';
-
-        return view('messages.categoryCreate', compact(['status', 'title']));
+        //
     }
 
     /**
@@ -90,20 +78,9 @@ class ProductCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, ProductCategory $category)
+    public function update(Request $request, $id)
     {
-
-        $category->description = $request->description;
-
-        $status = 0;
-        if($category->save()){
-            $status = 1;
-        }
-
-
-        $title='Editar Categoría';
-
-        return view('messages.categoryEdit', compact(['status', 'title']));
+        //
     }
 
     /**
@@ -112,17 +89,8 @@ class ProductCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategory $category)
+    public function destroy($id)
     {
-
-        $status = 0;
-        if($category->delete()){
-            $status = 1;
-        }
-
-
-        $title='Eliminar Categoría';
-
-        return view('messages.categoryDelete', compact(['status', 'title']));
+        //
     }
 }

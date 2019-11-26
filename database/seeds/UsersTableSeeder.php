@@ -14,39 +14,40 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $newUser = new User();
-        $newUser->name        =   'Super';
-        $newUser->last_name    =   'Admin';
-        $newUser->username    =   'admin';
-        $newUser->avatar      =     'avatar5.png';
-        $newUser->dni          =   '0703199076139';
-        $newUser->birthday     =   Carbon::create(1996,11, 29);
-        $newUser->register_date=   Carbon::now();
-        $newUser->mobile    =   31257901;
-        $newUser->address      =   'Bo. Abajo';
-        $newUser->email        =   'admin@smartec.com';
-        $newUser->password     =   bcrypt('admin19');
-        $newUser->role_id           =   1;
-        $newUser->branch_id         =   1;
-        $newUser->status         =   1;
-        $newUser->save();
 
-        $salesman = new User();
-        $salesman->name        =   'Salesman1';
-        $salesman->last_name    =   'salesman';
-        $salesman->username    =   'salesman';
-        $newUser->avatar      =     'avatar3.png';
-        $salesman->dni          =   '0703199307904';
-        $salesman->birthday     =   Carbon::create(1996,11, 29);
-        $salesman->register_date=   Carbon::now();
-        $salesman->mobile    =   98989898;
-        $salesman->address      =   'Bo. Barrio abajo';
-        $salesman->email        =   'salesman@smartec.com';
-        $salesman->password     =   bcrypt('salesman19');
-        $salesman->role_id           =   3;
-        $salesman->branch_id         =   1;
-        $salesman->status         =   1;
-        $salesman->save();
+      User::insert([
+        ['name'             =>   'Super',
+            'last_name'     =>   'Admin',
+            'username'      =>   'admin',
+            'avatar'        =>   'avatar5.png',
+            'dni'           =>   '0703199076139',
+            'birthday'      =>   Carbon::create(1996,11, 29),
+            'register_date' =>   Carbon::now(),
+            'mobile'        =>   31257901,
+            'address'       =>   'Bo. Abajo',
+            'email'         =>   'admin@smartec.com',
+            'password'      =>   bcrypt('admin19'),
+            'role_id'       =>   1,
+            'branch_id'     =>   1,
+            'status'        =>   1,
+        ],
+        ['name'             =>  'Salesman1',
+            'last_name'     =>  'salesman',
+            'username'      =>  'salesman',
+            'avatar'        =>  'avatar3.png',
+            'dni'           =>  '0703199307904',
+            'birthday'      =>  Carbon::create(1996,11, 29),
+            'register_date' =>  Carbon::now(),
+            'mobile'        =>  98989898,
+            'address'       =>  'Bo. Barrio abajo',
+            'email'         =>  'salesman@smartec.com',
+            'password'      =>  bcrypt('salesman19'),
+            'role_id'       =>  3,
+            'branch_id'     =>  1,
+            'status'        =>  1,
+        ]
+      ]);
+        
 
     }
 }

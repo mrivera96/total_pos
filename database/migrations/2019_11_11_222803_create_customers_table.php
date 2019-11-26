@@ -19,9 +19,9 @@ class CreateCustomersTable extends Migration
             $table->string('last_name', 45);
             $table->date('birthday');
             $table->integer('dni')->unique();
-            $table->string('email', 45)->unique()->nullable();
+            $table->string('email', 100)->unique()->nullable();
             $table->integer('cellphone_number')->unique();
-            $table->string('address', 45);
+            $table->string('address', 100);
             $table->tinyInteger('status');
             $table->timestamps();
         });

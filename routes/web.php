@@ -18,7 +18,9 @@ Route::resource('/user', 'Users\UserController');
 
 Route::resource('/category', 'Categories\ProductCategoriesController');
 
-Route::get('/user/delete/{id}', 'Users\UserController@delete')->name('user.delete');
+Route::resource('/supplier', 'suppliers\SuppliersController');
+
+Route::resource('/product', 'Products\ProductsController');
 
 Auth::routes();
 

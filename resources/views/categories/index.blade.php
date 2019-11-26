@@ -4,10 +4,11 @@
     <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
-                <thead class="bg-cyan">
+                <thead >
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Descripción</th>
+                    <th scope="col">Productos</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,13 +85,10 @@
                         </div>
                     </div>
 
-                    <tr id="row">
-                        <th scope="row" data-toggle="modal" data-target="#edit-{{$category->id}}"
-                            style="cursor: pointer">{{$category->id}}</th>
-                        <td scope="row" data-toggle="modal" data-target="#edit-{{$category->id}}"
-                            style="cursor: pointer">
-                            {{$category->description}}
-                        </td>
+                    <tr id="row" data-toggle="modal" data-target="#edit-{{$category->id}}" style="cursor: pointer">
+                        <th scope="row" >{{$category->id}}</th>
+                        <td scope="row" >{{$category->description}}</td>
+                        <td>{{$category->products()->count()}}</td>
                     </tr>
 
                 @endforeach

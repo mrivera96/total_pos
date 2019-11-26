@@ -12,18 +12,10 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $admin = new Role();
-        $admin->description    =   'Administrador';
-        $admin->save();
-
-        $cajero =   new Role();
-        $cajero->description   =   'Cajero';
-        $cajero->save();
-
-        $vendedor   =   new Role();
-        $vendedor->description   =    'Vendedor';
-        $vendedor->save();
-
+      Role::insert([
+        ['description'  =>  'Administrador'],
+        ['description'  =>  'Cajero'],
+        ['description'  =>  'Vendedor'],
+      ]);
     }
 }
