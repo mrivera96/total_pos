@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-blue elevation-4">
+<aside class="main-sidebar sidebar-dark-cyan elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link">
         <span class="brand-text font-weight-light">SMARTEC</span>
@@ -19,7 +19,7 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-collapse-hide-child" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item ">
@@ -34,11 +34,38 @@
 
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-store"></i>
+                        <i class="nav-icon fas fa-store-alt"></i>
                         <p>
                             {{__('Punto de venta')}}
                         </p>
                     </a>
+                </li>
+
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-list"></i>
+                        <p>
+                            {{__('Inventario')}}
+                        </p>
+
+                        <p class="pull-right-container">
+                            <i class="fa fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item ">
+                            <a href="{{route('category.index')}}" class="nav-link">
+                                <i class="fas fa-th nav-icon"></i>
+                                <p>Categorías de Productos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/layout/top-nav.html" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p>Ver todos los productos</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 @if(auth()->user()->role->id==1 )

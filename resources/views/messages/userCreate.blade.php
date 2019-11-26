@@ -16,7 +16,7 @@
             <div class="alert alert-success m-auto" role="alert">
                 El usuario ha sido creado correctamente.
             </div>
-            <a class="btn btn-success" href="{{route('dashboard')}}"> Aceptar</a>
+            <a class="btn btn-success" href="{{route('user.index')}}"> Aceptar</a>
         </div>
     @endif
 @endsection

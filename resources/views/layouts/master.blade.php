@@ -28,7 +28,10 @@
 
     <!-- jQuery -->
     <script src="{{asset('js/app.js')}}"></script>
-    @yield('scripts')
+    <script>
+        @yield('scripts')
+    </script>
+
 </div>
 </body>
 </html>

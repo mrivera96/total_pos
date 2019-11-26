@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
@@ -32,7 +34,7 @@ class UserController extends Controller
             redirect('/dashboard');
         }
         $title = 'Usuarios';
-        $users = User::all();
+        $users = User::where('status', 1)->get();
         return view('users.show', compact(['title', 'users']));
     }
 
@@ -44,7 +46,9 @@ class UserController extends Controller
     public function create()
     {
         $title = 'Nuevo usuario';
-        return view('users.create', compact(['title']));
+        $roles = Role::all();
+        $branchs = Branch::all();
+        return view('users.create', compact(['title','roles', 'branchs']));
 
     }
 
@@ -54,18 +58,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $user = new User();
-        $user->name        =   $request->name;
-        $user->last_name    =   $request->last_name;
-        $user->username    =   $request->username;
 
-        $user->dni          =   $request->dni;
-        $user->birthday     =   $request->birthday;
-        $user->cellphone_number    =   $request->cellphone_number;
-        $user->address      =   $request->address;
-        $user->email        =   $request->email;
+        $user = new User();
+        $user->name             =   $request->name;
+        $user->last_name        =   $request->last_name;
+        $user->username         =   $request->username;
+        $user->dni              =   $request->dni;
+        $user->birthday         =   $request->birthday;
+        $user->register_date    = Carbon::now();
+        $user->cellphone_number =   $request->cellphone_number;
+        $user->address          =   $request->address;
+        $user->email            =   $request->email;
+        $user->password         =   bcrypt($request->password);
+        $user->role_id          =   $request->role_id;
+        $user->branch_id        =   $request->branch_id;
+
         if(isset($request->avatar) && $request->avatar!=null){
             $imageName = time().'.'.$request->avatar->getClientOriginalExtension();
             $request->avatar->move(public_path('img'), $imageName);
@@ -80,7 +89,7 @@ class UserController extends Controller
 
         $title='Nuevo Usuario';
 
-        return view('messages.userEdit', compact(['status', 'title']));
+        return view('messages.userCreate', compact(['status', 'title']));
     }
 
     /**
@@ -104,9 +113,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = 'Editar Usuario';
-        $roles = Role::all();
-        $branchs = Branch::all();
-        return view('users.edit', compact(['title', 'user', 'roles', 'branchs']));
+
+        return view('users.edit', compact(['title', 'user']));
     }
 
     /**
@@ -161,26 +169,28 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-
-
-    }
-
-    public function delete($id){
         $title = 'Eliminar usuario';
         $status = 0;
         if($id == 1){
 
-        }else if($id == auth()->user->id){
+        }else if($id == Auth::user()->id){
             $user=User::find($id);
-            $user->delete();
+            $user->status   =   0;
+            $user->save();
             Auth::logout();
         }else{
             $user=User::find($id);
-            $user->delete();
+            $user->status   =   0;
+            $user->save();
             $status = 1;
         }
 
         return view('messages.userDelete', compact(['title', 'status']));
+
+    }
+
+    public function delete($id){
+
     }
 
 

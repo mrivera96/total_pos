@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 Route::resource('/user', 'Users\UserController');
 
+Route::resource('/category', 'Categories\ProductCategoriesController');
+
 Route::get('/user/delete/{id}', 'Users\UserController@delete')->name('user.delete');
 
 Auth::routes();

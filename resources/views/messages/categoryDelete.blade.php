@@ -7,17 +7,16 @@
         <div class="mt-10 jumbotron bg-warning text-center">
 
             <div class="alert alert-warning m-auto" role="alert">
-                <i class="fas fa-exclamation-triangle"> Lo sentimos, el usuario administrador no puede ser
-                    eliminado.</i>
+                <i class="fas fa-exclamation-triangle"> Lo sentimos, ha ocurrido un error al eliminar la categoría.</i>
             </div>
-            <a class="btn btn-warning" href="{{route('user.index')}}"> Aceptar</a>
+            <a class="btn btn-warning" href="{{route('category.index')}}"> Aceptar</a>
         </div>
     @elseif($status==1)
         <div class="mt-10 jumbotron bg-success text-center">
             <div class="alert alert-success m-auto" role="alert">
-                El usuario ha sido eliminado correctamente.
+                La categoría ha sido eliminada correctamente.
             </div>
-            <a class="btn btn-success" href="{{route('user.index')}}"> Aceptar</a>
+            <a class="btn btn-success" href="{{route('category.index')}}"> Aceptar</a>
         </div>
     @endif
 @endsection

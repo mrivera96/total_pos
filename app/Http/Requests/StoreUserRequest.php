@@ -14,7 +14,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,11 +29,15 @@ class StoreUserRequest extends FormRequest
             'last_name' => 'required|max:45',
             'avatar' =>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'username' => 'required|max:15',
-            'dni' => 'required|unique:users',
+            'dni' => 'required|unique:users|digits:13',
             'birthday' => 'required|date',
             'cellphone_number' => 'required|unique:users',
             'address' => 'required|max:45',
             'email' => 'required|unique:users',
+            'role_id' => 'required',
+            'branch_id'=> 'required',
+            'password' =>'required|min:6|confirmed',
+
         ];
     }
 
@@ -61,6 +65,8 @@ class StoreUserRequest extends FormRequest
             'address.max' => 'La dirección no debe exceder los 45 caracteres.',
             'email.required' => 'El email es obligatorio.',
             'email.unique' => 'Éste email ya está registrado.',
+            'password.min' => 'La contraseña debe tener como mínimo 6 caracteres.',
+            'password.required' => 'La contraseña es obligatoria.'
         ];
     }
 }
