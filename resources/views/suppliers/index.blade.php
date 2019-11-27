@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @section('content')
-@include('dashboard.content_header')
 <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
                 <thead class="table-head-fixed">
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Número de teléfono</th>

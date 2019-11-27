@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    @include('dashboard.content_header')
+    @include('layouts.content_header')
     <div class="card ">
         @include('users.form')
     </div>

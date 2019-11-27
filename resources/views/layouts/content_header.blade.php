@@ -1,5 +1,5 @@
 <!-- Content Header (Page header) -->
-<div class="content-header">
+
     <div class="container-fluid">
         <div class="row mb-2 card-header bg-light">
             <div class="col-sm-1">
@@ -12,5 +12,5 @@
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</div>
+
 <!-- /.content-header -->

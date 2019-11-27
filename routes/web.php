@@ -18,7 +18,7 @@ Route::resource('/user', 'Users\UserController');
 
 Route::resource('/category', 'Categories\ProductCategoriesController');
 
-Route::resource('/supplier', 'suppliers\SuppliersController');
+Route::resource('/supplier', 'Suppliers\SuppliersController');
 
 Route::resource('/product', 'Products\ProductsController');
 

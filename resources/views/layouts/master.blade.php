@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
 @include('layouts.master_head')
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-navbar-fixed sidebar-collapse">
+
 <div class="wrapper">
 
 @include('layouts.master_navbar')
 
-
+@include('layouts.sidebar')
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        @include('layouts.sidebar')
-        <div class="container">
-            @yield('content')
+        <div class="content-header m-auto">
+        @include('layouts.content_header')
         </div>
 
+        <div class="content">
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        </div>
     </div>
 
 

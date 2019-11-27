@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand fixed navbar-light navbar-yellow">
+<nav class="main-header navbar navbar-expand navbar-light navbar-yellow">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -7,7 +7,6 @@
         </li>
 
     </ul>
-
 
     <!-- Right Side Of Navbar -->
     <ul class="navbar-nav ml-auto">

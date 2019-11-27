@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-    @include('dashboard.content_header')
     <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
