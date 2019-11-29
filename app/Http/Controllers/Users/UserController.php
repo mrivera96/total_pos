@@ -11,6 +11,7 @@ use App\User;
 use App\Role;
 use App\Branch;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class UserController extends Controller
 {
@@ -48,6 +49,7 @@ class UserController extends Controller
         $title = 'Nuevo usuario';
         $roles = Role::all();
         $branchs = Branch::all();
+        $action = route('user.store');
         return view('users.create', compact(['title','roles', 'branchs']));
 
     }
@@ -68,7 +70,7 @@ class UserController extends Controller
         $user->dni              =   $request->dni;
         $user->birthday         =   $request->birthday;
         $user->register_date    = Carbon::now();
-        $user->cellphone_number =   $request->cellphone_number;
+        $user->mobile =   $request->mobile;
         $user->address          =   $request->address;
         $user->email            =   $request->email;
         $user->password         =   bcrypt($request->password);
@@ -113,8 +115,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = 'Editar Usuario';
+        $action = route('user.update', $user);
 
-        return view('users.edit', compact(['title', 'user']));
+        return view('users.edit', compact(['title', 'user', 'action']));
     }
 
     /**
@@ -126,40 +129,23 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-
-        $user->name        =   $request->name;
-        $user->last_name    =   $request->last_name;
-        $user->username    =   $request->username;
-
-        $user->dni          =   $request->dni;
-        $user->birthday     =   $request->birthday;
-        $user->cellphone_number    =   $request->cellphone_number;
-        $user->address      =   $request->address;
-        $user->email        =   $request->email;
         if(isset($request->avatar) && $request->avatar!=null){
             $imageName = time().'.'.$request->avatar->getClientOriginalExtension();
             $request->avatar->move(public_path('img'), $imageName);
             $user->avatar      =     $imageName;
         }
 
-        $status = 0;
-        if($user->save()){
-            $status = 1;
-        }
-
-
         $title='Editar Usuario';
-
-        return view('messages.userEdit', compact(['status', 'title']));
-
+        try{
+            $user->update($request->all());
+            $status = 1;
+            return view('messages.userEdit', compact(['status', 'title']));
+        }catch (Exception $exception){
+            $status = 0;
+            $err = $exception->getMessage();
+            return view('messages.userEdit', compact(['status', 'title', 'err']));
+        }
     }
-
-    /*public function update(Request $request, User $user)
-    {
-
-        dd($request) ;
-
-    }*/
 
     /**
      * Remove the specified resource from storage.

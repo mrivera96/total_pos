@@ -13,6 +13,9 @@
     @elseif($status==0)
         <div class="alert alert-warning mb-5" role="alert">
             Ha ocurrido un error al actualizar el usuario. Intenta de nuevo.
+            @if(isset($err))
+                {{$err}}
+                @endif
         </div>
         <a class="btn btn-outline-primary mt-5" href="#"> Regresar</a>
     @endif

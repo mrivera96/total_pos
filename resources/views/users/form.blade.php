@@ -1,10 +1,5 @@
 <div class="card-body">
-    <form method="POST" enctype="multipart/form-data"
-          @if(\Illuminate\Support\Facades\Route::currentRouteName() =='user.create')
-          action="{{ route('user.store') }}"
-          @elseif(\Illuminate\Support\Facades\Route::currentRouteName() =='user.edit')
-          action="{{ route('user.update', $user->id) }}"@endif>
-
+    <form method="POST" enctype="multipart/form-data" action="{{$action}}">
         @if(\Illuminate\Support\Facades\Route::currentRouteName() =='user.edit')
             @method('PUT')
         @endif
@@ -107,17 +102,17 @@
             </div>
 
             <div class="col-md-6">
-                <label for="cellphone_number"
+                <label for="mobile"
                        class="col-md-12 col-form-label text-left">{{ __('Número celular') }}</label>
-                <input id="cellphone_number" type="number" maxlength="8" minlength="8"
-                       class="form-control @error('cellphone_number') is-invalid @enderror"
+                <input id="mobile" type="number" maxlength="8" minlength="8"
+                       class="form-control @error('mobile') is-invalid @enderror"
                        placeholder="{{__('Ingresa el número de celular del usuario sin espacios ni guiones.')}}"
                        @if($errors->any())
-                       value="{{ old('cellphone_number')}}"
+                       value="{{ old('mobile')}}"
                        @endif
                        @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{ $user->cellphone_number}}"
-                       @endif name="cellphone_number" required>
+                       value="{{ $user->mobile}}"
+                       @endif name="mobile" required>
 
                 @error('cellphone_number')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -231,7 +226,10 @@
 
         <div class="form-group row mb-0">
             <div class="col-md-12 text-right">
-                <button type="submit" class="btn bg-primary floating-button">
+                <button type="submit" class="btn bg-primary" style="position:fixed;width:60px!important;height:60px!important;
+    bottom:40px !important;right:40px !important;color:#FFF;
+    border-radius:50px !important;text-align:center;
+    box-shadow: 2px 2px 3px #999 !important;">
                     <i class="fas fa-lg fa-save"></i>
                 </button>
             </div>

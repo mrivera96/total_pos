@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Suppliers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateSupplierRequest;
 use Illuminate\Http\Request;
 use App\Supplier;
+use Exception;
 
 class SuppliersController extends Controller
 {
@@ -37,7 +39,9 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        //
+        $title = 'Nuevo Proveedor';
+        $action = route('supplier.store');
+        return view('suppliers.create', compact(['title', 'action']));
     }
 
     /**
@@ -71,7 +75,8 @@ class SuppliersController extends Controller
     public function edit(Supplier $supplier)
     {
         $title = 'Editar Proveedor';
-        return view('suppliers.edit', compact(['title', 'supplier']));
+        $action = route('supplier.update', $supplier);
+        return view('suppliers.edit', compact(['title', 'supplier', 'action']));
     }
 
     /**
@@ -81,9 +86,16 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        //
+        $status = 0;
+        if($supplier->update($request->all())){
+            $status = 1;
+        }
+
+        $title='Editar Proveedor';
+
+        return view('messages.supplierEdit', compact(['status', 'title']));
     }
 
     /**
@@ -92,8 +104,17 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        $title = 'Eliminar Proveedor';
+
+        try{
+            $supplier->update(['status' => 0]);
+            $status=1;
+            return view('messages.supplierDelete', compact(['title', 'status']));
+        }catch (Exception $exception){
+            $status = 0;
+            return view('messages.supplierDelete', compact(['title', 'status']));
+        }
     }
 }
