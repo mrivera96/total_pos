@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <label for="description" class="col-form-label">Descripción de
                                                 categoría:</label>
-                                            <input type="text" name="description" required maxlength="45"
+                                            <input type="text" name="description" required maxlength="100"
                                                    class="form-control @error('description') is-invalid @enderror"
                                                    id="description"
                                                    @if($errors->any()) value="{{ old('description')}}"
@@ -113,11 +113,11 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="description" class="col-form-label">Descripción de categoría:</label>
-                                    <input type="text" name="description" required maxlength="45"
+                                    <input type="text" name="description" required maxlength="100"
                                            class="form-control @error('description') is-invalid @enderror"
                                            id="description"
                                            @if($errors->any()) value="{{ old('description')}}"
-                                           @endif  placeholder="{{__('Ingrese la descripción de la nueva categoría (máximo 45 caracteres).')}}">
+                                           @endif  placeholder="{{__('Ingrese la descripción de la nueva categoría (máximo 100 caracteres).')}}">
                                 </div>
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar

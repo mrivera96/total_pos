@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateSupplierRequest extends FormRequest
+class StoreSupplierRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,13 @@ class UpdateSupplierRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'required|max:100',
             'description' => 'required',
-            'phone_number' => ['required', 'digits:8', Rule::unique('suppliers')->ignore($this->supplier->id)],
+            'phone_number' => ['required', 'digits:8', 'unique:suppliers'],
             'address' => 'required',
-            'email' => ['required','max:100', 'email:rfc',Rule::unique('suppliers')->ignore($this->supplier->id)]
+            'email' => ['required','max:100', 'email:rfc','unique:suppliers']
         ];
     }
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Suppliers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateSupplierRequest;
+use App\Http\Requests\StoreSupplierRequest;
+use App\Http\Requests\SupplierRequest;
 use Illuminate\Http\Request;
 use App\Supplier;
 use Exception;
+use Illuminate\Support\Facades\Route;
 
 class SuppliersController extends Controller
 {
@@ -50,9 +52,33 @@ class SuppliersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSupplierRequest $supplier)
     {
-        //
+        try{
+            Supplier::insert($supplier->all(['name', 'description','phone_number', 'address', 'email']));
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El proveedor ha sido guardado correctamente.');
+            $btn = 'success';
+            $route = route('supplier.index');
+            $btn_text = __('Aceptar');
+            $title = 'Nuevo Proveedor';
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+
+        }catch(Exception $exception){
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __("Ha ocurrido un erro al guardar el proveedor. Intenta de nuevo.\n Detalle técnico: ".$exception->getMessage());
+            $btn = 'warning';
+            $route = url()->previous();
+            $btn_text = __('Regresar');
+            $title = 'Nuevo Proveedor';
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+
+        }
+
     }
 
     /**
@@ -63,7 +89,10 @@ class SuppliersController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $supplier = Supplier::find($id);
+        $title = $supplier->name;
+        return view('suppliers.show', compact(['title','supplier']));
     }
 
     /**
@@ -86,7 +115,7 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSupplierRequest $request, Supplier $supplier)
+    public function update(SupplierRequest $request, Supplier $supplier)
     {
         $status = 0;
         if($supplier->update($request->all())){

@@ -45,7 +45,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
-                            {{__('Productos')}}
+                            {{__('Inventario')}}
                         </p>
 
                         <p class="pull-right-container">
@@ -70,7 +70,7 @@
                         <li class="nav-item">
                             <a href="{{route('product.index')}}" class="nav-link">
                                 <i class="far fa-list-alt nav-icon"></i>
-                                <p>{{__('Ver todos los productos')}}</p>
+                                <p>{{__('Productos')}}</p>
                             </a>
                         </li>
                     </ul>

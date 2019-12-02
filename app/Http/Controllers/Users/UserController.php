@@ -83,15 +83,27 @@ class UserController extends Controller
             $user->avatar      =     $imageName;
         }
 
-        $status = 0;
-        if($user->save()){
-            $status = 1;
+        try{
+            $user->save();
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El usuario ha sido guardado correctamente.');
+            $btn = 'success';
+            $route = route('user.index');
+            $btn_text = __('Aceptar');
+            $title = 'Nuevo Usuario';
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+        }catch (Exception $exception){
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __("Ha ocurrido un erro al guardar el usuario. Intenta de nuevo.\n Detalle técnico: ".$exception->getMessage());
+            $btn = 'warning';
+            $route = url()->previous();
+            $btn_text = __('Regresar');
+            $title = __('Nuevo Usuario');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
         }
-
-
-        $title='Nuevo Usuario';
-
-        return view('messages.userCreate', compact(['status', 'title']));
     }
 
     /**
@@ -102,7 +114,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = User::find($id);
+        $title = $user->name;
 
+        return view('users.show', compact(['title', 'user']));
 
     }
 
@@ -114,7 +129,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $title = 'Editar Usuario';
+        $title = __('Editar Usuario');
         $action = route('user.update', $user);
 
         return view('users.edit', compact(['title', 'user', 'action']));
@@ -134,16 +149,27 @@ class UserController extends Controller
             $request->avatar->move(public_path('img'), $imageName);
             $user->avatar      =     $imageName;
         }
-
-        $title='Editar Usuario';
         try{
             $user->update($request->all());
-            $status = 1;
-            return view('messages.userEdit', compact(['status', 'title']));
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El usuario ha sido actualizado correctamente.');
+            $btn = 'success';
+            $route = route('user.show',$user->id);
+            $btn_text = __('Aceptar');
+            $title = __('Editar Usuario');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
         }catch (Exception $exception){
-            $status = 0;
-            $err = $exception->getMessage();
-            return view('messages.userEdit', compact(['status', 'title', 'err']));
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __("Ha ocurrido un erro al actualizar el usuario. Intenta de nuevo.\n Detalle técnico: ".$exception->getMessage());
+            $btn = 'warning';
+            $route = url()->previous();
+            $btn_text = __('Regresar');
+            $title = __('Editar Usuario');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
         }
     }
 
@@ -155,29 +181,33 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $title = 'Eliminar usuario';
-        $status = 0;
+        $title = __('Eliminar usuario');
+        
         if($id == 1){
+            $bg = 'danger';
+            $alert = 'danger';
+            $message = __('Lo sentimos, el usuario Administrador no puede ser eliminado.');
+            $btn = 'danger';
+            $route = route('user.index');
+            $btn_text = __('Aceptar');
 
         }else if($id == Auth::user()->id){
             $user=User::find($id);
-            $user->status   =   0;
-            $user->save();
+            $user->update(['status'=>0]);
             Auth::logout();
         }else{
             $user=User::find($id);
-            $user->status   =   0;
             $user->save();
-            $status = 1;
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El usuario ha sido eliminado correctamente.');
+            $btn = 'success';
+            $route = route('user.index');
+            $btn_text = __('Aceptar');
         }
 
-        return view('messages.userDelete', compact(['title', 'status']));
+        return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
 
     }
-
-    public function delete($id){
-
-    }
-
 
 }

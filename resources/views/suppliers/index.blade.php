@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     @foreach($suppliers as $supplier)
-                        <tr style="cursor: pointer" onclick="window.location.href='{{route('supplier.edit', $supplier->id)}}'">
+                        <tr style="cursor: pointer" onclick="window.location.href='{{route('supplier.show', $supplier->id)}}'">
                             <th scope="row" >{{$supplier->id}}</th>
                             <td scope="row">{{$supplier->name}}</td>
                             <td scope="row">{{$supplier->description}}</td>

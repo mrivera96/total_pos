@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                        <tr style="cursor: pointer" onclick="window.location.href='{{route('user.edit', $user->id)}}'">
+                        <tr style="cursor: pointer" onclick="window.location.href='{{route('user.show', $user->id)}}'">
                             <th scope="row">{{$user->id}}</th>
                             <th scope="row">
                                 <img class="rounded-circle img-size-32" src="{{asset('img/'.$user->avatar)}}">
