@@ -5,12 +5,13 @@
             <table class="table table-hover table-striped border-0 ">
                 <thead >
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">{{__('Id')             }} </th>
                         <th></th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Código de barra</th>
-                        <th scope="col">En existencia</th>
+                        <th scope="col">{{__('Nombre         ')}} </th>
+                        <th scope="col">{{__('Descripción    ')}} </th>
+                        <th scope="col">{{__('Categoría      ')}} </th>
+                        <th scope="col">{{__('Código de barra')}} </th>
+                        <th scope="col">{{__('En existencia  ')}} </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                             </th>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
+                            <td>{{$product->category->description}}</td>
                             <td>{{$product->barcode}}</td>
                             <td>{{$product->in_stock}}</td>
                         </tr>

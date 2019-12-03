@@ -50,7 +50,7 @@ class UserController extends Controller
         $roles = Role::all();
         $branchs = Branch::all();
         $action = route('user.store');
-        return view('users.create', compact(['title','roles', 'branchs']));
+        return view('users.create', compact(['title','roles', 'branchs', 'action']));
 
     }
 

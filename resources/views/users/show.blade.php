@@ -5,7 +5,7 @@
         <div class="card-header bg-blue ">
             <div class="row text-center" style="position: relative">
                 <div class="col-md-12">
-                    <img id="preview" class="rounded-circle m-auto"
+                    <img id="preview" width="20%" class="rounded-circle m-auto"
                          @if(isset($user->avatar) && !empty($user->avatar))
                          src="{{asset('img/'.$user->avatar)}}"
                          @else src="{{asset('img/profile.png')}}"@endif>

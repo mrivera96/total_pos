@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('in_stock');
             $table->string('brand', 100);
             $table->string('image');
+            $table->tinyInteger('status')->default(1);
             $table->integer('supplier_id')->unsigned();
             $table->integer('product_category_id')->unsigned();
             $table->timestamps();

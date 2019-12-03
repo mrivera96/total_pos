@@ -59,7 +59,11 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        $title = $product->name;
+
+        return view('products.show', compact(['title', 'product']));
+
     }
 
     /**
@@ -70,7 +74,11 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $title = $product->name;
+        $action=route('product.update', $id);
+
+        return view('products.edit', compact(['title', 'product', 'action']));
     }
 
     /**

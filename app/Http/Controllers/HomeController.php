@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title='Dashboard';
-        return view('dashboard.dashboard', compact('title'));
+        $title = 'Dashboard';
+        $products = Product::where('status',1)->get();
+        $users = User::where('status',1)->get();
+        $inventory = 0;
+        foreach($products as $product){
+            $inventory+=$product->in_stock;
+        }
+        
+        return view('dashboard.dashboard', compact('title', 'products', 'users', 'inventory'));
     }
 }
