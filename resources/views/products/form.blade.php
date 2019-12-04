@@ -5,11 +5,12 @@
         @endif
         @csrf
         <div class="form-group row align-content-center" style="position: relative">
+
             <label class="btn btn-default fas fa-camera rounded-circle bg-gradient-blue"
                    style="position: absolute; left: 43%; top: 85%">
-                <input id="avatar" class="@error('avatar') is-invalid @enderror" type="file" name="avatar"
+                <input id="image" class="@error('image') is-invalid @enderror" type="file" name="image"
                        @if($errors->any())
-                       value="{{ old('avatar')}}"
+                       value="{{ old('image')}}"
                        @endif style="display: none;">
             </label>
 
@@ -21,15 +22,14 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="name" class="col-md-4 col-form-label text-left">{{ __('Nombre (s)') }}</label>
+                <label for="name" class="col-md-12 col-form-label text-left">{{ __('Nombre del producto') }}:</label>
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                       placeholder="{{__('Ingresa el primer nombre del usuario.')}}"
+                       placeholder="{{__('Ingresa el nombre del producto.')}}"
                        @if($errors->any())
                        value="{{ old('name')}}"
                        @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{ $product->name }}"
-                       @endif required autofocus>
+                       value="@if(isset($product->name)){{ $product->name }} @endif"
+                       required autofocus>
 
                 @error('name')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -37,16 +37,15 @@
             </div>
 
             <div class="col-md-6">
-                <label for="last_name"
-                       class="col-md-4 col-form-label text-left">{{ __('Apellido (s)') }}</label>
-                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el apellido del usuario.')}}"
-                       name="last_name" @if($errors->any()) value="{{ old('last_name')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{ $product->last_name }}"
-                       @endif required autofocus>
+                <label for="description"
+                       class="col-md-12 col-form-label text-left">{{ __('Descripción') }}:</label>
+                <input id="description" type="text" class="form-control @error('description') is-invalid @enderror"
+                       placeholder="{{__('Ingresa la descripción del producto.')}}"
+                       name="description" @if($errors->any()) value="{{ old('description')}}" @endif
+                       value="@if(isset($product->description)){{ $product->description }}@endif"
+                       required autofocus>
 
-                @error('last_name')
+                @error('description')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
@@ -55,66 +54,31 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="productname"
-                       class="col-md-12 col-form-label text-left">{{ __('Nombre de usuario (Se usará para iniciar sesión)') }}</label>
-                <input id="productname" type="text" class="form-control @error('productname') is-invalid @enderror"
+                <label for="barcode"
+                       class="col-md-12 col-form-label text-left">{{ __('Código de barra') }}:</label>
+                <input id="barcode" type="text" class="form-control @error('productname') is-invalid @enderror"
                        placeholder="{{__('Ingresa el nombre de usuario sin espacios.')}}"
-                       name="productname" @if($errors->any()) value="{{ old('productname')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')value="{{$product->productname}}"
-                       @endif required autofocus>
+                       name="barcode" @if($errors->any()) value="{{ old('barcode')}}" @endif
+                       value="@if(isset($product->barcode)){{$product->barcode}}@endif"
+                       required autofocus>
 
-                @error('productname')
+                @error('barcode')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
 
 
             <div class="col-md-6">
-                <label for="dni" class="col-md-4 col-form-label text-left">{{ __('No. Identidad') }}</label>
-                <input id="dni" type="number" maxlength="13" class="form-control @error('dni') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el número de identidad del usuario sin espacios ni guiones.')}}"
+                <label for="cost" class="col-md-12 col-form-label text-left">{{ __('Costo') }}:</label>
+                <input id="cost" type="text" class="form-control @error('cost') is-invalid @enderror"
+                       placeholder="{{__('Ingresa el costo del producto.')}}"
                        @if($errors->any())
-                       value="{{ old('dni')}}"
+                       value="{{ old('cost')}}"
                        @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{$product->dni}}"
-                       @endif name="dni" required>
+                       value="@if(isset($product->cost)){{$product->cost}}@endif"
+                       name="cost" required>
 
-                @error('dni')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-6">
-                <label for="birthday" class="col-md-12 col-form-label text-left">{{ __('Fecha de nacimiento') }}</label>
-                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror"
-                       @if($errors->any())
-                       value="{{ old('birthday')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{$product->birthday}}"
-                       @endif  name="birthday" required>
-
-                @error('birthday')
-                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                @enderror
-            </div>
-
-            <div class="col-md-6">
-                <label for="mobile"
-                       class="col-md-12 col-form-label text-left">{{ __('Número celular') }}</label>
-                <input id="mobile" type="number" maxlength="8" minlength="8"
-                       class="form-control @error('mobile') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el número de celular del usuario sin espacios ni guiones.')}}"
-                       @if($errors->any())
-                       value="{{ old('mobile')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{ $product->mobile}}"
-                       @endif name="mobile" required>
-
-                @error('cellphone_number')
+                @error('cost')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
@@ -122,19 +86,44 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                <label for="address" class="col-md-4 col-form-label text-left">{{ __('Dirección') }}</label>
-                <input id="address" type="text" maxlength="100"
-                       class="form-control @error('address') is-invalid @enderror"
-                       placeholder="{{__('Ingresa la dirección del usuario (máximo 100 caracteres).')}}"
-                       @if($errors->any())
-                       value="{{ old('address')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{$product->address}}"
-                       @endif
-                       name="address" required>
+                <label for="sale_price" class="col-md-12 col-form-label text-left">{{ __('Precio de venta') }}:</label>
+                <input id="sale_price" type="text" class="form-control @error('sale_price') is-invalid @enderror"
+                       value="@if(isset($product->sale_price)){{$product->sale_price}} @elseif($errors->any()) {{old('sale_price')}}@endif"
+                       name="sale_price" required>
 
-                @error('address')
+                @error('sale_price')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label for="in_stock"
+                       class="col-md-12 col-form-label text-left">{{ __('En existencia') }}:</label>
+                <input id="in_stock" type="text"
+                       class="form-control @error('in_stock') is-invalid @enderror"
+                       placeholder="{{__('Ingresa la cantidad en existencia.')}}"
+                       value="@if($errors->any()){{ old('in_stock')}}
+                       @elseif(isset($product->in_stock))
+                        {{$product->in_stock}}
+                       @endif"
+                        name="in_stock" required>
+
+                @error('in_stock')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="brand" class="col-md-12 col-form-label text-left">{{ __('Marca') }}:</label>
+                <input id="brand" type="text" maxlength="100"
+                       class="form-control @error('brand') is-invalid @enderror"
+                       placeholder="{{__('Ingresa la marca del producto.')}}"
+                       value="@if($errors->any()){{ old('brand')}}@elseif(isset($product->brand)){{$product->brand}}@endif"
+                       name="brand" required>
+
+                @error('brand')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
