@@ -8,9 +8,9 @@ class Product extends Model
 {
     protected $table = 'products';
 
-    protected $fillable = ['description', 
+    protected $fillable = ['description',
     'barcode','
-    cost', 
+    cost',
     'sale_price',
     'in_stock',
     'brand',
@@ -23,7 +23,7 @@ class Product extends Model
     }
 
     public function supplier(){
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'id');
     }
 
 }

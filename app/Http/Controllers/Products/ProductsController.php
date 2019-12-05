@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\ProductCategory;
+use App\Supplier;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -77,8 +79,10 @@ class ProductsController extends Controller
         $product = Product::find($id);
         $title = $product->name;
         $action=route('product.update', $id);
+        $suppliers=Supplier::where('status',1)->get();
+        $categories=ProductCategory::where('status',1)->get();
 
-        return view('products.edit', compact(['title', 'product', 'action']));
+        return view('products.edit', compact(['title', 'product', 'action', 'suppliers', 'categories']));
     }
 
     /**

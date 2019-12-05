@@ -102,10 +102,7 @@
                 <input id="in_stock" type="text"
                        class="form-control @error('in_stock') is-invalid @enderror"
                        placeholder="{{__('Ingresa la cantidad en existencia.')}}"
-                       value="@if($errors->any()){{ old('in_stock')}}
-                       @elseif(isset($product->in_stock))
-                        {{$product->in_stock}}
-                       @endif"
+                       value="@if($errors->any()){{old('in_stock')}}@elseif(isset($product->in_stock)){{$product->in_stock}}@endif"
                         name="in_stock" required>
 
                 @error('in_stock')
@@ -129,89 +126,34 @@
             </div>
 
             <div class="col-md-6">
-                <label for="email"
-                       class="col-md-12 col-form-label text-left">{{ __('Dirección de correo electrónico') }}</label>
-                <input id="email" type="email" maxlength="100" class="form-control @error('email') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el e-mail del usuario (máximo 100 caracteres).')}}"
-                       @if($errors->any())
-                       value="{{ old('email')}}"
-                       @endif
+                <label for="supplier_id"
+                       class="col-md-12 col-form-label text-left">{{ __('Proveedor') }}:</label>
+                <select class="form-control" name="supplier_id">
+                    @foreach($suppliers as $supplier)
+                        <option @if($supplier->id == $product->supplier->id) selected @endif value="{{$supplier->id}}">{{$supplier->name}}</option>
+                    @endforeach
+                </select>
 
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.edit')
-                       value="{{$product->email}}"
-                       @endif name="email" required>
+                @error('supplier')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
 
-                @error('email')
+            <div class="col-md-6">
+                <label for="product_category_id"
+                       class="col-md-12 col-form-label text-left">{{ __('Categoría') }}:</label>
+                <select class="form-control" name="product_category_id">
+                    @foreach($categories as $category)
+                        <option @if($category->id == $product->category->id) selected @endif value="{{$category->id}}">{{$category->description}}</option>
+                    @endforeach
+                </select>
+
+                @error('categorie')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
 
         </div>
-
-        @if(\Illuminate\Support\Facades\Route::currentRouteName()=='product.create')
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label for="role_id" class="col-md-4 col-form-label text-left">{{ __('Rol') }}</label>
-                    <select class="form-control" name="role_id">
-                        @foreach($roles as $role)
-                            <option value="{{$role->id}}">{{$role->description}}</option>
-                        @endforeach
-                    </select>
-
-
-                    @error('role_id')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                </div>
-
-                <div class="col-md-6">
-                    <label for="branch_id"
-                           class="col-md-12 col-form-label text-left">{{ __('Sucursal') }}
-                        <select class="form-control" name="branch_id">
-                            @foreach($branchs as $branch)
-                                <option value="{{$branch->id}}">{{$branch->description}}</option>
-                            @endforeach
-                        </select>
-                    </label>
-
-                    @error('email')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                </div>
-
-            </div>
-
-            <div class="form-group row">
-                <div class="col-md-6">
-                    <label for="password"
-                           class="col-md-12 col-form-label text-left">{{ __('Contraseña') }}</label>
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                           placeholder="{{__('Ingresa la nueva contraseña del usuario.')}}"
-                           @if($errors->any())
-                           value="{{ old('password')}}"
-                           @endif
-                           name="password" required autocomplete="current-password">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                </div>
-
-                <div class="col-md-6">
-                    <label for="password-confirm"
-                           class="col-md-12 col-form-label text-left">{{ __('Confirmar contraseña') }}</label>
-                    <input id="password-confirm" type="password"
-                           class="form-control @error('password') is-invalid @enderror" name="password_confirmation"
-                           required placeholder="{{__('Ingrese de nuevo la contraseña.')}}">
-
-                    @error('password')
-                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                </div>
-
-            </div>
-
-        @endif
 
         <div class="form-group row mb-0">
             <div class="col-md-12 text-right">
