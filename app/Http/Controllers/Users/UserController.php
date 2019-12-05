@@ -182,7 +182,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $title = __('Eliminar usuario');
-        
+
         if($id == 1){
             $bg = 'danger';
             $alert = 'danger';
@@ -197,7 +197,7 @@ class UserController extends Controller
             Auth::logout();
         }else{
             $user=User::find($id);
-            $user->save();
+            $user->update(['status' => 0]);
             $bg = 'success';
             $alert = 'success';
             $message = __('El usuario ha sido eliminado correctamente.');

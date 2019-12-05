@@ -103,7 +103,7 @@
                        class="form-control @error('in_stock') is-invalid @enderror"
                        placeholder="{{__('Ingresa la cantidad en existencia.')}}"
                        value="@if($errors->any()){{old('in_stock')}}@elseif(isset($product->in_stock)){{$product->in_stock}}@endif"
-                        name="in_stock" required>
+                       name="in_stock" required>
 
                 @error('in_stock')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -130,7 +130,8 @@
                        class="col-md-12 col-form-label text-left">{{ __('Proveedor') }}:</label>
                 <select class="form-control" name="supplier_id">
                     @foreach($suppliers as $supplier)
-                        <option @if($supplier->id == $product->supplier->id) selected @endif value="{{$supplier->id}}">{{$supplier->name}}</option>
+                        <option @if($supplier->id == $product->supplier->id) selected
+                                @endif value="{{$supplier->id}}">{{$supplier->name}}</option>
                     @endforeach
                 </select>
 
@@ -144,7 +145,8 @@
                        class="col-md-12 col-form-label text-left">{{ __('Categoría') }}:</label>
                 <select class="form-control" name="product_category_id">
                     @foreach($categories as $category)
-                        <option @if($category->id == $product->category->id) selected @endif value="{{$category->id}}">{{$category->description}}</option>
+                        <option @if($category->id == $product->category->id) selected
+                                @endif value="{{$category->id}}">{{$category->description}}</option>
                     @endforeach
                 </select>
 
@@ -169,7 +171,7 @@
 </div>
 
 @section('scripts')
-    $('#avatar').change(function () {
+    $('#image').change(function () {
     var imgPath = $(this)[0].value;
     var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
     if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")

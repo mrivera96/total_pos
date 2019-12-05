@@ -7,6 +7,7 @@ use App\Product;
 use App\ProductCategory;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Exception;
 
 class ProductsController extends Controller
 {
@@ -27,7 +28,7 @@ class ProductsController extends Controller
     public function index()
     {
         $title = 'Productos';
-        $products = Product::all();
+        $products = Product::where('status', 1)->get();
 
         return view('products.index', compact(['title', 'products']));
     }
@@ -105,6 +106,26 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $title = __('Eliminar producto');
+        try{
+            $product = Product::find($id);
+            $product->update(['status' => 0]);
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El producto ha sido eliminado correctamente.');
+            $btn = 'success';
+            $route = route('product.index');
+            $btn_text = __('Aceptar');
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+        }catch (Exception $exception){
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __("Ha ocurrido un erro al eliminar el producto. Intenta de nuevo.\n Detalle técnico: ".$exception->getMessage());
+            $btn = 'warning';
+            $route = url()->previous();
+            $btn_text = __('Regresar');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+        }
     }
 }
