@@ -8,29 +8,22 @@
             <label class="btn btn-default fas fa-camera rounded-circle bg-gradient-blue"
                    style="position: absolute; left: 43%; top: 85%">
                 <input id="avatar" class="@error('avatar') is-invalid @enderror" type="file" name="avatar"
-                       @if($errors->any())
-                       value="{{ old('avatar')}}"
-                       @endif style="display: none;">
+                       value="@if($errors->any()){{ old('avatar')}}@endif"
+                       style="display: none;">
             </label>
 
             <img id="preview" class="rounded-circle m-auto" style="width: 25%;"
-                 @if(isset($user->avatar) && !empty($user->avatar))
-                 src="{{asset('img/'.$user->avatar)}}"
-                 @else src="{{asset('img/profile.png')}}"@endif>
+                 src=" @if(isset($user->avatar) && !empty($user->avatar)){{asset('img/'.$user->avatar)}}@else {{asset('img/profile.png')}}@endif">
         </div>
 
         <div class="form-group row">
             <div class="col-md-6">
                 <label for="name" class="col-md-4 col-form-label text-left">{{ __('Nombre (s)') }}</label>
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                       placeholder="{{__('Ingresa el primer nombre del usuario.')}}"
-                       @if($errors->any())
-                       value="{{ old('name')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{ $user->name }}"
-                       @endif required autofocus>
-
+                       maxlength="45"
+                       placeholder="{{__('Ingresa el nombre o nombres del usuario.')}}"
+                       value="@if($errors->any()){{ old('name')}}@else{{ $user->name ?? '' }}@endif"
+                       required autofocus>
                 @error('name')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
@@ -40,11 +33,11 @@
                 <label for="last_name"
                        class="col-md-4 col-form-label text-left">{{ __('Apellido (s)') }}</label>
                 <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el apellido del usuario.')}}"
-                       name="last_name" @if($errors->any()) value="{{ old('last_name')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{ $user->last_name }}"
-                       @endif required autofocus>
+                       maxlength="45"
+                       placeholder="{{__('Ingresa el o los apellidos del usuario.')}}"
+                       name="last_name"
+                       value="@if($errors->any()){{ old('last_name')}}@else{{ $user->last_name ?? '' }}@endif"
+                       required autofocus>
 
                 @error('last_name')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -58,10 +51,10 @@
                 <label for="username"
                        class="col-md-12 col-form-label text-left">{{ __('Nombre de usuario (Se usará para iniciar sesión)') }}</label>
                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                       placeholder="{{__('Ingresa el nombre de usuario sin espacios.')}}"
-                       name="username" @if($errors->any()) value="{{ old('username')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')value="{{$user->username}}"
-                       @endif required autofocus>
+                       placeholder="{{__('Ingresa el nombre de usuario sin espacios.')}}" maxlength="15"
+                       name="username"
+                       value="@if($errors->any()){{ old('username')}}@else{{$user->username ?? ''}}@endif"
+                       required autofocus>
 
                 @error('username')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -71,14 +64,11 @@
 
             <div class="col-md-6">
                 <label for="dni" class="col-md-4 col-form-label text-left">{{ __('No. Identidad') }}</label>
-                <input id="dni" type="number" maxlength="13" class="form-control @error('dni') is-invalid @enderror"
+                <input id="dni" type="number" minlength="13" maxlength="13"
+                       class="form-control @error('dni') is-invalid @enderror"
                        placeholder="{{__('Ingresa el número de identidad del usuario sin espacios ni guiones.')}}"
-                       @if($errors->any())
-                       value="{{ old('dni')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{$user->dni}}"
-                       @endif name="dni" required>
+                       value="@if($errors->any()){{ old('dni')}}@else{{$user->dni ?? ''}}@endif"
+                       name="dni" required>
 
                 @error('dni')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -90,11 +80,8 @@
             <div class="col-md-6">
                 <label for="birthday" class="col-md-12 col-form-label text-left">{{ __('Fecha de nacimiento') }}</label>
                 <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror"
-                       @if($errors->any())
-                       value="{{ old('birthday')}}" @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{$user->birthday}}"
-                       @endif  name="birthday" required>
+                       value="@if($errors->any()){{ old('birthday')}}@else{{$user->birthday ?? ''}}@endif"
+                       name="birthday" required>
 
                 @error('birthday')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -107,14 +94,10 @@
                 <input id="mobile" type="number" maxlength="8" minlength="8"
                        class="form-control @error('mobile') is-invalid @enderror"
                        placeholder="{{__('Ingresa el número de celular del usuario sin espacios ni guiones.')}}"
-                       @if($errors->any())
-                       value="{{ old('mobile')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{ $user->mobile}}"
-                       @endif name="mobile" required>
+                       value="@if($errors->any()){{ old('mobile')}}@else{{ $user->mobile ?? ''}}@endif"
+                       name="mobile" required>
 
-                @error('cellphone_number')
+                @error('mobile')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                 @enderror
             </div>
@@ -126,12 +109,7 @@
                 <input id="address" type="text" maxlength="100"
                        class="form-control @error('address') is-invalid @enderror"
                        placeholder="{{__('Ingresa la dirección del usuario (máximo 100 caracteres).')}}"
-                       @if($errors->any())
-                       value="{{ old('address')}}"
-                       @endif
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{$user->address}}"
-                       @endif
+                       value="@if($errors->any()){{ old('address')}}@else{{$user->address ?? ''}}@endif"
                        name="address" required>
 
                 @error('address')
@@ -144,13 +122,8 @@
                        class="col-md-12 col-form-label text-left">{{ __('Dirección de correo electrónico') }}</label>
                 <input id="email" type="email" maxlength="100" class="form-control @error('email') is-invalid @enderror"
                        placeholder="{{__('Ingresa el e-mail del usuario (máximo 100 caracteres).')}}"
-                       @if($errors->any())
-                       value="{{ old('email')}}"
-                       @endif
-
-                       @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.edit')
-                       value="{{$user->email}}"
-                       @endif name="email" required>
+                       value="@if($errors->any()){{ old('email')}}@else{{$user->email ?? ''}}@endif"
+                       name="email" required>
 
                 @error('email')
                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -159,11 +132,11 @@
 
         </div>
 
-        @if(\Illuminate\Support\Facades\Route::currentRouteName()=='user.create')
+        @if(!isset($user))
             <div class="form-group row">
                 <div class="col-md-6">
                     <label for="role_id" class="col-md-4 col-form-label text-left">{{ __('Rol') }}</label>
-                    <select class="form-control" name="role_id">
+                    <select class="form-control" name="role_id" required>
                         @foreach($roles as $role)
                             <option value="{{$role->id}}">{{$role->description}}</option>
                         @endforeach
@@ -178,14 +151,14 @@
                 <div class="col-md-6">
                     <label for="branch_id"
                            class="col-md-12 col-form-label text-left">{{ __('Sucursal') }}
-                        <select class="form-control" name="branch_id">
+                        <select class="form-control" name="branch_id" required>
                             @foreach($branchs as $branch)
                                 <option value="{{$branch->id}}">{{$branch->description}}</option>
                             @endforeach
                         </select>
                     </label>
 
-                    @error('email')
+                    @error('branch_id')
                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
@@ -198,9 +171,7 @@
                            class="col-md-12 col-form-label text-left">{{ __('Contraseña') }}</label>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                            placeholder="{{__('Ingresa la nueva contraseña del usuario.')}}"
-                           @if($errors->any())
-                           value="{{ old('password')}}"
-                           @endif
+                           value="@if($errors->any()){{ old('password')}}@endif"
                            name="password" required autocomplete="current-password">
 
                     @error('password')

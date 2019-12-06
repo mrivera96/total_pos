@@ -106,6 +106,7 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
+
         $title = __('Eliminar producto');
         try{
             $product = Product::find($id);

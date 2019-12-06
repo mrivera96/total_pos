@@ -15,7 +15,8 @@ class Product extends Model
     'in_stock',
     'brand',
     'supplier_id',
-    'product_category_id'];
+    'product_category_id',
+        'status'];
 
 
     public function category(){

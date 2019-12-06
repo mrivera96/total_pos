@@ -6,9 +6,7 @@
             <div class="row text-center" style="position: relative">
                 <div class="col-md-12">
                     <img id="preview" width="20%" class="rounded-circle m-auto"
-                         @if(isset($user->avatar) && !empty($user->avatar))
-                         src="{{asset('img/'.$user->avatar)}}"
-                         @else src="{{asset('img/profile.png')}}"@endif>
+                         src="@if(isset($user->avatar) && !empty($user->avatar)){{asset('img/'.$user->avatar)}}@else{{asset('img/profile.png')}}@endif">
                 </div>
 
                 <div class="col-md-12">
@@ -37,14 +35,14 @@
                 <div class="col-md-4">
                     <label for="dni" class="col-md-12 col-form-label ">{{ __('No. Identidad') }}</label>
                     <input id="dni" type="text" maxlength="13" class="form-control"
-                    value="{{$user->dni}}"
+                           value="{{$user->dni}}"
                            readonly>
                 </div>
 
                 <div class="col-md-4">
                     <label for="birthday" class="col-md-12 col-form-label ">{{ __('Fecha de nacimiento') }}</label>
                     <input id="birthday" type="date" class="form-control"
-                        value="{{$user->birthday}}" readonly>
+                           value="{{$user->birthday}}" readonly>
                 </div>
 
             </div>
@@ -53,7 +51,7 @@
                 <div class="col-md-4">
                     <label for="mobile"
                            class="col-md-12 col-form-label ">{{ __('Número celular') }}</label>
-                    <input id="mobile" type="text" 
+                    <input id="mobile" type="text"
                            class="form-control"
                            value="{{ $user->mobile}}" name="mobile" readonly>
                 </div>
@@ -71,8 +69,7 @@
                            class="col-md-12 col-form-label text-left">{{ __('Dirección de correo electrónico') }}</label>
                     <input id="email" type="email" maxlength="100"
                            class="form-control @error('email') is-invalid @enderror"
-
-                           value="@if(isset($user->email)) {{$user->email}} @endif"
+                           value="{{$user->email}}"
                            name="email" readonly>
                 </div>
             </div>
@@ -83,7 +80,7 @@
                 <div class="col-md-4">
                     <label for="role_id" class="col-md-12 col-form-label text-left">{{ __('Rol') }}</label>
                     <input class="col-md-12" type="text"
-                           value="@if(isset($user->role->description)) {{$user->role->description}}@endif"
+                           value="{{$user->role->description}}"
                            readonly>
                 </div>
 
@@ -91,7 +88,7 @@
                     <label for="branch_id"
                            class="col-md-12 col-form-label">{{ __('Sucursal') }}</label>
                     <input class="col-md-12" type="text"
-                           value="@if(isset($user->branch->description)) {{$user->branch->description}} @endif"
+                           value="{{$user->branch->description}}"
                            readonly>
                 </div>
             </div>
@@ -101,7 +98,7 @@
                 <div class="col-md-12 text-right">
                     <button class="btn bg-primary" style="position:fixed;width:60px!important;height:60px!important;bottom:40px !important;right:40px !important;color:#FFF;
                         border-radius:50px !important;text-align:center;box-shadow: 2px 2px 3px #999 !important;"
-                        onclick="window.location.href='{{route('user.edit', $user->id)}}'">
+                            onclick="window.location.href='{{route('user.edit', $user->id)}}'">
                         <i class="fas fa-lg fa-edit"></i>
                     </button>
                 </div>

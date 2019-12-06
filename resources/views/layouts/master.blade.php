@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 @include('layouts.master_head')
-<body class="hold-transition sidebar-mini layout-navbar-fixed sidebar-collapse">
+<body class="hold-transition sidebar-mini layout-navbar-fixed">
 
 <div class="wrapper">
 

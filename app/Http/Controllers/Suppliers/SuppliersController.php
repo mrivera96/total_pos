@@ -117,14 +117,26 @@ class SuppliersController extends Controller
      */
     public function update(SupplierRequest $request, Supplier $supplier)
     {
-        $status = 0;
-        if($supplier->update($request->all())){
-            $status = 1;
+        $title = 'Editar Proveedor';
+        try{
+            $supplier->update($request->all());
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El proveedor ha sido actualizado correctamente.');
+            $btn = 'success';
+            $route = route('supplier.show', $supplier->id);
+            $btn_text = __('Aceptar');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+
+        }catch (Exception $exception){
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __('Ha ocurrido un error al actualizar el proveedor. Intenta de nuevo. Detalle técnico: '.$exception->getMessage());
+            $btn = 'warning';
+            $route = route(url()->previous());
+            $btn_text = __('Regresar');
         }
-
-        $title='Editar Proveedor';
-
-        return view('messages.supplierEdit', compact(['status', 'title']));
     }
 
     /**
@@ -139,11 +151,24 @@ class SuppliersController extends Controller
 
         try{
             $supplier->update(['status' => 0]);
-            $status=1;
-            return view('messages.supplierDelete', compact(['title', 'status']));
+            $bg = 'success';
+            $alert = 'success';
+            $message = __('El proveedor ha sido eliminado correctamente.');
+            $btn = 'success';
+            $route = route('supplier.index');
+            $btn_text = __('Aceptar');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
         }catch (Exception $exception){
-            $status = 0;
-            return view('messages.supplierDelete', compact(['title', 'status']));
+            $bg = 'warning';
+            $alert = 'warning';
+            $message = __('Ha ocurrido un error al eliminar el proveedor. Intenta de nuevo. Detalle técnico: '.$exception->getMessage());
+            $btn = 'warning';
+            $route = route('supplier.show', $supplier->id);
+            $btn_text = __('Aceptar');
+
+            return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
+
         }
     }
 }
