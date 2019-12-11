@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Suppliers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupplierRequest;
-use App\Http\Requests\SupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 use Illuminate\Http\Request;
 use App\Supplier;
 use Exception;
@@ -115,7 +115,7 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SupplierRequest $request, Supplier $supplier)
+    public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
         $title = 'Editar Proveedor';
         try{
