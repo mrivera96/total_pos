@@ -5,7 +5,7 @@
     <div class="card-header bg-blue">
         <div class="row text-center" style="position: relative">
         <div class="col-md-12 ">
-                <img class="rounded-circle" width="20%" src="{{asset('img/'.$product->image)}}"/>
+                <img class="rounded-circle" width="20%" src="@if(isset($product->image)){{asset('img/'.$product->image)}}@else{{asset('img/item_icon.png')}}@endif"/>
             </div>
             <div class="col-md-12 ">
                 <h3>{{$product->name}}</h3>
@@ -29,7 +29,7 @@
             <div class="col-md-4">
                 <label for="description" class="col-md-12 col-form-label">{{__('Descripción')}}:</label>
                 <input type="text" class="form-control" aria-multiline="true" name="description"  id="description" value="{{$product->description}}" readonly>
-               
+
             </div>
 
             <div class="col-md-4">
@@ -39,7 +39,7 @@
         </div>
 
         <div class="row">
-            
+
             <div class="col-md-4">
                 <label for="cost" class="col-form-label">{{__('Costo')}}:</label>
                 <input type="text" class="form-control" id="cost" value="Lps. {{$product->cost}}" readonly>

@@ -25,8 +25,7 @@
 
                 <div class="col-md-4">
                     <label for="description" class="col-md-12 col-form-label">{{__('Descripción')}}:</label>
-                    <input type="text" class="form-control" aria-multiline="true" name="description" id="description"
-                           value="{{$supplier->description}}" readonly>
+                    <textarea  class="form-control"  id="description" readonly>{{$supplier->description}}</textarea>
 
                 </div>
 

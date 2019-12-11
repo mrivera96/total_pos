@@ -9,22 +9,24 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = ['description',
-    'barcode','
-    cost',
-    'sale_price',
-    'in_stock',
-    'brand',
-    'supplier_id',
-    'product_category_id',
+        'barcode',
+        'cost',
+        'sale_price',
+        'in_stock',
+        'brand',
+        'supplier_id',
+        'product_category_id',
         'status'];
 
 
-    public function category(){
-    	return $this->belongsTo(ProductCategory::class, 'id');
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
     }
 
-    public function supplier(){
-        return $this->belongsTo(Supplier::class, 'id');
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
 }

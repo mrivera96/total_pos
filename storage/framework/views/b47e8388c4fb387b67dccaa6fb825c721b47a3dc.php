@@ -23,8 +23,7 @@
 
                 <div class="col-md-4">
                     <label for="description" class="col-md-12 col-form-label"><?php echo e(__('Descripción')); ?>:</label>
-                    <input type="text" class="form-control" aria-multiline="true" name="description" id="description"
-                           value="<?php echo e($supplier->description); ?>" readonly>
+                    <textarea  class="form-control"  id="description" readonly><?php echo e($supplier->description); ?></textarea>
 
                 </div>
 

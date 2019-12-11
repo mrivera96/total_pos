@@ -13,7 +13,7 @@
                 <img src="<?php echo e(asset('img/'.auth()->user()->avatar)); ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="<?php echo e(route('user.edit', auth()->user()->id)); ?>" class="d-block"><?php echo e(auth()->user()->name); ?></a>
+                <a href="<?php echo e(route('user.show', auth()->user()->id)); ?>" class="d-block"><?php echo e(auth()->user()->name); ?></a>
             </div>
         </div>
 

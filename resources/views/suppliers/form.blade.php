@@ -18,11 +18,10 @@
         </div>
         <div class="col-md-6">
             <label for="description" class="col-form-label">{{__('Descripción')}}:</label>
-            <input type="text" aria-multiline="true" name="description" required
+            <textarea type="text" aria-multiline="true" name="description" required
                    placeholder="{{__('Ingresa la descripción del proveedor.')}}"
                    class="form-control @error('description') is-invalid @enderror"
-                   id="description"
-                   value="@if($errors->any()){{ old('description')}}@else{{$supplier->description ?? ''}}@endif">
+                   id="description"> "@if($errors->any()){{ old('description')}}@else{{$supplier->description ?? ''}}@endif</textarea>
             @error('description')
             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror

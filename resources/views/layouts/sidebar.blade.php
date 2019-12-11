@@ -13,7 +13,7 @@
                 <img src="{{asset('img/'.auth()->user()->avatar)}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{route('user.edit', auth()->user()->id)}}" class="d-block">{{auth()->user()->name}}</a>
+                <a href="{{route('user.show', auth()->user()->id)}}" class="d-block">{{auth()->user()->name}}</a>
             </div>
         </div>
 

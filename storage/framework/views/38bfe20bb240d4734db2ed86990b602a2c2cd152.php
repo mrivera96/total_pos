@@ -16,15 +16,12 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" type="file" name="image"
-                       <?php if($errors->any()): ?>
-                       value="<?php echo e(old('image')); ?>"
-                       <?php endif; ?> style="display: none;">
+                       value="<?php if($errors->any()): ?><?php echo e(old('image')); ?><?php endif; ?>"
+                       style="display: none;">
             </label>
 
             <img id="preview" class="rounded-circle m-auto" style="width: 25%;"
-                 <?php if(isset($product->image) && !empty($product->image)): ?>
-                 src="<?php echo e(asset('img/'.$product->image)); ?>"
-                 <?php else: ?> src="<?php echo e(asset('img/profile.png')); ?>"<?php endif; ?>>
+                 src="<?php if(isset($product->image) && !empty($product->image)): ?><?php echo e(asset('img/'.$product->image)); ?><?php else: ?><?php echo e(asset('img/item_icon.png')); ?><?php endif; ?>">
         </div>
 
         <div class="form-group row">
@@ -39,10 +36,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="name"
                        placeholder="<?php echo e(__('Ingresa el nombre del producto.')); ?>"
-                       <?php if($errors->any()): ?>
-                       value="<?php echo e(old('name')); ?>"
-                       <?php endif; ?>
-                       value="<?php if(isset($product->name)): ?><?php echo e($product->name); ?> <?php endif; ?>"
+                       value="<?php if($errors->any()): ?><?php echo e(old('name')); ?><?php else: ?><?php echo e($product->name ?? ''); ?><?php endif; ?>"
                        required autofocus>
 
                 <?php $__errorArgs = ['name'];
@@ -69,8 +63,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                        placeholder="<?php echo e(__('Ingresa la descripción del producto.')); ?>"
-                       name="description" <?php if($errors->any()): ?> value="<?php echo e(old('description')); ?>" <?php endif; ?>
-                       value="<?php if(isset($product->description)): ?><?php echo e($product->description); ?><?php endif; ?>"
+                       name="description"  value="<?php if($errors->any()): ?><?php echo e(old('description')); ?><?php else: ?><?php echo e($product->description ?? ''); ?><?php endif; ?>"
                        required autofocus>
 
                 <?php $__errorArgs = ['description'];
@@ -100,10 +93,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                        placeholder="<?php echo e(__('Ingresa el nombre de usuario sin espacios.')); ?>"
-                       name="barcode" <?php if($errors->any()): ?> value="<?php echo e(old('barcode')); ?>" <?php endif; ?>
-                       value="<?php if(isset($product->barcode)): ?><?php echo e($product->barcode); ?><?php endif; ?>"
+                       name="barcode"
+                       value="<?php if($errors->any()): ?><?php echo e(old('barcode')); ?><?php else: ?><?php echo e($product->barcode ?? ''); ?><?php endif; ?>"
                        required autofocus>
-
                 <?php $__errorArgs = ['barcode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -128,10 +120,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                        placeholder="<?php echo e(__('Ingresa el costo del producto.')); ?>"
-                       <?php if($errors->any()): ?>
-                       value="<?php echo e(old('cost')); ?>"
-                       <?php endif; ?>
-                       value="<?php if(isset($product->cost)): ?><?php echo e($product->cost); ?><?php endif; ?>"
+                       value="<?php if($errors->any()): ?><?php echo e(old('cost')); ?><?php else: ?><?php echo e($product->cost ?? ''); ?><?php endif; ?>"
                        name="cost" required>
 
                 <?php $__errorArgs = ['cost'];
@@ -158,9 +147,9 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                       value="<?php if(isset($product->sale_price)): ?><?php echo e($product->sale_price); ?> <?php elseif($errors->any()): ?> <?php echo e(old('sale_price')); ?><?php endif; ?>"
+                       value="<?php if($errors->any()): ?><?php echo e(old('sale_price')); ?><?php else: ?><?php echo e($product->sale_price ?? ''); ?><?php endif; ?>"
+                       placeholder="<?php echo e(__('Ingresa el precio de venta del producto.')); ?>"
                        name="sale_price" required>
-
                 <?php $__errorArgs = ['sale_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -186,7 +175,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                        placeholder="<?php echo e(__('Ingresa la cantidad en existencia.')); ?>"
-                       value="<?php if($errors->any()): ?><?php echo e(old('in_stock')); ?><?php elseif(isset($product->in_stock)): ?><?php echo e($product->in_stock); ?><?php endif; ?>"
+                       value="<?php if($errors->any()): ?><?php echo e(old('in_stock')); ?><?php else: ?><?php echo e($product->in_stock ?? ''); ?><?php endif; ?>"
                        name="in_stock" required>
 
                 <?php $__errorArgs = ['in_stock'];
@@ -215,7 +204,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                        placeholder="<?php echo e(__('Ingresa la marca del producto.')); ?>"
-                       value="<?php if($errors->any()): ?><?php echo e(old('brand')); ?><?php elseif(isset($product->brand)): ?><?php echo e($product->brand); ?><?php endif; ?>"
+                       value="<?php if($errors->any()): ?><?php echo e(old('brand')); ?><?php else: ?><?php echo e($product->brand ?? ''); ?><?php endif; ?>"
                        name="brand" required>
 
                 <?php $__errorArgs = ['brand'];
@@ -235,7 +224,7 @@ unset($__errorArgs, $__bag); ?>
                        class="col-md-12 col-form-label text-left"><?php echo e(__('Proveedor')); ?>:</label>
                 <select class="form-control" name="supplier_id">
                     <?php $__currentLoopData = $suppliers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $supplier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option <?php if($supplier->id == $product->supplier->id): ?> selected
+                        <option <?php if(isset($product) && $supplier->id == $product->supplier->id): ?> selected
                                 <?php endif; ?> value="<?php echo e($supplier->id); ?>"><?php echo e($supplier->name); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
@@ -257,7 +246,7 @@ unset($__errorArgs, $__bag); ?>
                        class="col-md-12 col-form-label text-left"><?php echo e(__('Categoría')); ?>:</label>
                 <select class="form-control" name="product_category_id">
                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option <?php if($category->id == $product->category->id): ?> selected
+                        <option <?php if(isset($product) && $category->id == $product->category->id): ?> selected
                                 <?php endif; ?> value="<?php echo e($category->id); ?>"><?php echo e($category->description); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>

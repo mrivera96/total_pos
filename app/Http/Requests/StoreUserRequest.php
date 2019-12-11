@@ -50,7 +50,7 @@ class StoreUserRequest extends FormRequest
             'last_name.max' => 'El apellido no debe contener más de 45 caracteres.',
             'avatar.image' =>'El avatar debe ser una imagen.',
             'avatar.mime' =>'El avatar debe ser de alguno de éstos formatos: jpeg,png,jpg,gif,svg.',
-            'avatar.max' =>'El avatar no debe pesar más de 2048 MB.',
+            'avatar.max' =>'El avatar no debe pesar más de 2 MB.',
             'username.required' => 'El nombre de usuario es obligatorio.',
             'username.max' => 'El nombre de usuario no debe contener más de 15 caracteres.',
             'dni.required' => 'El número de identidad es obligatorio.',

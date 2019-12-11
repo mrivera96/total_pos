@@ -3,7 +3,7 @@
     <div class="card-header bg-blue">
         <div class="row text-center" style="position: relative">
         <div class="col-md-12 ">
-                <img class="rounded-circle" width="20%" src="<?php echo e(asset('img/'.$product->image)); ?>"/>
+                <img class="rounded-circle" width="20%" src="<?php if(isset($product->image)): ?><?php echo e(asset('img/'.$product->image)); ?><?php else: ?><?php echo e(asset('img/item_icon.png')); ?><?php endif; ?>"/>
             </div>
             <div class="col-md-12 ">
                 <h3><?php echo e($product->name); ?></h3>
@@ -27,7 +27,7 @@
             <div class="col-md-4">
                 <label for="description" class="col-md-12 col-form-label"><?php echo e(__('Descripción')); ?>:</label>
                 <input type="text" class="form-control" aria-multiline="true" name="description"  id="description" value="<?php echo e($product->description); ?>" readonly>
-               
+
             </div>
 
             <div class="col-md-4">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="row">
-            
+
             <div class="col-md-4">
                 <label for="cost" class="col-form-label"><?php echo e(__('Costo')); ?>:</label>
                 <input type="text" class="form-control" id="cost" value="Lps. <?php echo e($product->cost); ?>" readonly>
@@ -115,4 +115,5 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\smartecpos\resources\views/products/show.blade.php ENDPATH**/ ?>

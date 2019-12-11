@@ -19,7 +19,7 @@
                         <tr style="cursor: pointer" onclick="window.location.href='{{route('product.show', $product->id)}}'">
                             <th scope="row">{{$product->id}}</th>
                             <th scope="row">
-                                <img class="rounded-circle img-size-32" src="{{asset('img/'.$product->image)}}">
+                                <img class="rounded-circle img-size-32" src="@if(isset($product->image)){{asset('img/'.$product->image)}}@else{{asset('img/item_icon.png')}}@endif">
                             </th>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>

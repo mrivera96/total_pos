@@ -18,7 +18,7 @@
                         <tr style="cursor: pointer" onclick="window.location.href='<?php echo e(route('product.show', $product->id)); ?>'">
                             <th scope="row"><?php echo e($product->id); ?></th>
                             <th scope="row">
-                                <img class="rounded-circle img-size-32" src="<?php echo e(asset('img/'.$product->image)); ?>">
+                                <img class="rounded-circle img-size-32" src="<?php if(isset($product->image)): ?><?php echo e(asset('img/'.$product->image)); ?><?php else: ?><?php echo e(asset('img/item_icon.png')); ?><?php endif; ?>">
                             </th>
                             <td><?php echo e($product->name); ?></td>
                             <td><?php echo e($product->description); ?></td>
