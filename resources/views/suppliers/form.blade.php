@@ -21,7 +21,7 @@
             <textarea type="text" aria-multiline="true" name="description" required
                    placeholder="{{__('Ingresa la descripción del proveedor.')}}"
                    class="form-control @error('description') is-invalid @enderror"
-                   id="description"> "@if($errors->any()){{ old('description')}}@else{{$supplier->description ?? ''}}@endif</textarea>
+                   id="description"> @if($errors->any()){{ old('description')}}@else{{$supplier->description ?? ''}}@endif</textarea>
             @error('description')
             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror
@@ -31,7 +31,7 @@
     <div class="form-group row">
         <div class="col-md-6">
             <label for="phone_number" class="col-form-label">{{__('Número de teléfono')}}:</label>
-            <input type="number" name="phone_number" required minlength="8" maxlength="8"
+            <input type="tel" name="phone_number" required minlength="8" maxlength="8"
                    placeholder="{{__('Ingresa el número de teléfono del proveedor (sin espacios ni guiones).')}}"
                    class="form-control @error('phone_number') is-invalid @enderror"
                    id="phone_number"

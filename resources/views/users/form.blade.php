@@ -91,7 +91,7 @@
             <div class="col-md-6">
                 <label for="mobile"
                        class="col-md-12 col-form-label text-left">{{ __('Número celular') }}</label>
-                <input id="mobile" type="number" maxlength="8" minlength="8"
+                <input id="mobile" type="tel" maxlength="8" minlength="8"
                        class="form-control @error('mobile') is-invalid @enderror"
                        placeholder="{{__('Ingresa el número de celular del usuario sin espacios ni guiones.')}}"
                        value="@if($errors->any()){{ old('mobile')}}@else{{ $user->mobile ?? ''}}@endif"
@@ -209,22 +209,25 @@
 </div>
 
 @section('scripts')
-    $('#avatar').change(function () {
-    var imgPath = $(this)[0].value;
-    var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-    if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
-    readURL(this);
-    else
-    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
-    });
+    <script>
+        $('#avatar').change(function () {
+            var imgPath = $(this)[0].value;
+            var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+            if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+                readURL(this);
+            else
+                alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
+        });
 
-    function readURL(input) {
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.readAsDataURL(input.files[0]);
-    reader.onload = function (e) {
-    $('#preview').attr('src', e.target.result);
-    }
-    }
-    }
-@stop
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+                reader.onload = function (e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+            }
+        }
+    </script>
+
+@endsection

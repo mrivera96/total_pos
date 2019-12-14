@@ -13,7 +13,7 @@
             <div class="icon">
                 <i class="ion ion-android-people"></i>
             </div>
-            
+
         </div>
     </div>
 
@@ -28,7 +28,22 @@
             <div class="icon">
                 <i class="ion ion-pricetag"></i>
             </div>
-            
+
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{$customers->count()}}</h3>
+
+                <p>{{__('Clientes')}}</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-people"></i>
+            </div>
+
         </div>
     </div>
 </div>

@@ -32,6 +32,17 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->role->id==1 )
+                    <li class="nav-item">
+                        <a href="{{route('user.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>
+                                {{__('Usuarios')}}
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-store-alt"></i>
@@ -76,12 +87,14 @@
                     </ul>
                 </li>
 
+
+
                 @if(auth()->user()->role->id==1 )
                     <li class="nav-item">
-                        <a href="{{route('user.index')}}" class="nav-link">
-                            <i class="nav-icon fas fa-user-friends"></i>
+                        <a href="{{route('customer.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
-                                {{__('Usuarios')}}
+                                {{__('Clientes')}}
                             </p>
                         </a>
                     </li>

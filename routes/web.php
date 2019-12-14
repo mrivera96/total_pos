@@ -22,6 +22,8 @@ Route::resource('/supplier', 'Suppliers\SuppliersController');
 
 Route::resource('/product', 'Products\ProductsController');
 
+Route::resource('/customer','Customers\CustomersController');
+
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');

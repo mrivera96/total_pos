@@ -168,7 +168,7 @@ unset($__errorArgs, $__bag); ?>
             <div class="col-md-6">
                 <label for="mobile"
                        class="col-md-12 col-form-label text-left"><?php echo e(__('Número celular')); ?></label>
-                <input id="mobile" type="number" maxlength="8" minlength="8"
+                <input id="mobile" type="tel" maxlength="8" minlength="8"
                        class="form-control <?php $__errorArgs = ['mobile'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

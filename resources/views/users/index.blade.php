@@ -5,12 +5,12 @@
             <table class="table table-hover table-striped border-0 ">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">#</th>
                     <th scope="col"></th>
-                    <th scope="col">Nombre(s)</th>
-                    <th scope="col">Apellido(s)</th>
-                    <th scope="col">Nombre de usuario</th>
-                    <th scope="col">Rol</th>
+                    <th scope="col">{{__('Nombre(s)')}}</th>
+                    <th scope="col">{{__('Apellido(s)')}}</th>
+                    <th scope="col">{{__('Nombre de usuario')}}</th>
+                    <th scope="col">{{__('Rol')}}</th>
                 </tr>
                 </thead>
                 <tbody>

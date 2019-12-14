@@ -130,7 +130,7 @@ endif;
 unset($__errorArgs, $__bag); ?>"
                                            id="description"
                                            <?php if($errors->any()): ?> value="<?php echo e(old('description')); ?>"
-                                           <?php endif; ?>  placeholder="<?php echo e(__('Ingrese la descripción de la nueva categoría (máximo 100 caracteres).')); ?>">
+                                           <?php endif; ?>  placeholder="<?php echo e(__('Ingresa la descripción de la nueva categoría (máximo 100 caracteres).')); ?>">
                                 </div>
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar

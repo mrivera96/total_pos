@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Product;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,11 +29,12 @@ class HomeController extends Controller
         $title = 'Dashboard';
         $products = Product::where('status',1)->get();
         $users = User::where('status',1)->get();
+        $customers = Customer::where('status',1)->get();
         $inventory = 0;
         foreach($products as $product){
             $inventory+=$product->in_stock;
         }
-        
-        return view('dashboard.dashboard', compact('title', 'products', 'users', 'inventory'));
+
+        return view('dashboard.dashboard', compact('title', 'products', 'users', 'inventory','customers'));
     }
 }

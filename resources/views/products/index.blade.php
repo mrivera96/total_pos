@@ -5,7 +5,7 @@
             <table class="table table-hover table-striped border-0 ">
                 <thead >
                     <tr>
-                        <th scope="col">{{__('Id')             }} </th>
+                        <th scope="col"># </th>
                         <th></th>
                         <th scope="col">{{__('Nombre         ')}} </th>
                         <th scope="col">{{__('Descripción    ')}} </th>

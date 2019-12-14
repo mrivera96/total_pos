@@ -3,7 +3,7 @@
 @include('layouts.master_head')
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 
-<div class="wrapper">
+<div id="app" class="wrapper">
 
 @include('layouts.master_navbar')
 
@@ -11,7 +11,7 @@
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="content-header m-auto">
-        @include('layouts.content_header')
+            @include('layouts.content_header')
         </div>
 
         <div class="content">
@@ -31,12 +31,11 @@
     </footer>
     <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="{{asset('js/app.js')}}"></script>
-    <script>
-        @yield('scripts')
-    </script>
 
+
+    @yield('scripts')
 </div>
+<!-- jQuery -->
+<script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

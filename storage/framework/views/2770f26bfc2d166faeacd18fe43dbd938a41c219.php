@@ -32,6 +32,18 @@
                     </a>
                 </li>
 
+                <?php if(auth()->user()->role->id==1 ): ?>
+                    <li class="nav-item">
+                        <a href="<?php echo e(route('user.index')); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-user-friends"></i>
+                            <p>
+                                <?php echo e(__('Usuarios')); ?>
+
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
                 <li class="nav-item">
                     <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-store-alt"></i>
@@ -78,12 +90,14 @@
                     </ul>
                 </li>
 
+
+
                 <?php if(auth()->user()->role->id==1 ): ?>
                     <li class="nav-item">
-                        <a href="<?php echo e(route('user.index')); ?>" class="nav-link">
-                            <i class="nav-icon fas fa-user-friends"></i>
+                        <a href="<?php echo e(route('customer.index')); ?>" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
-                                <?php echo e(__('Usuarios')); ?>
+                                <?php echo e(__('Clientes')); ?>
 
                             </p>
                         </a>

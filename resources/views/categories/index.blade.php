@@ -117,7 +117,7 @@
                                            class="form-control @error('description') is-invalid @enderror"
                                            id="description"
                                            @if($errors->any()) value="{{ old('description')}}"
-                                           @endif  placeholder="{{__('Ingrese la descripción de la nueva categoría (máximo 100 caracteres).')}}">
+                                           @endif  placeholder="{{__('Ingresa la descripción de la nueva categoría (máximo 100 caracteres).')}}">
                                 </div>
                                 <div class="form-group text-right">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar
