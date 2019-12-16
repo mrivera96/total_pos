@@ -3,13 +3,14 @@
 @include('layouts.master_head')
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 
-<div id="app" class="wrapper">
+<div class="wrapper">
 
 @include('layouts.master_navbar')
 
 @include('layouts.sidebar')
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @includeWhen($modal ?? '','layouts.modal')
         <div class="content-header m-auto">
             @include('layouts.content_header')
         </div>
@@ -31,11 +32,9 @@
     </footer>
     <!-- ./wrapper -->
 
-
-
-    @yield('scripts')
 </div>
 <!-- jQuery -->
 <script src="{{asset('js/app.js')}}"></script>
+@yield('scripts')
 </body>
 </html>

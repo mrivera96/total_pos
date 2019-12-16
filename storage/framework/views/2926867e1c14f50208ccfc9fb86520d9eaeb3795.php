@@ -3,13 +3,14 @@
 <?php echo $__env->make('layouts.master_head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 
-<div id="app" class="wrapper">
+<div class="wrapper">
 
 <?php echo $__env->make('layouts.master_navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <?php echo $__env->renderWhen($modal ?? '','layouts.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path'])); ?>
         <div class="content-header m-auto">
             <?php echo $__env->make('layouts.content_header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
@@ -31,12 +32,10 @@
     </footer>
     <!-- ./wrapper -->
 
-
-
-    <?php echo $__env->yieldContent('scripts'); ?>
 </div>
 <!-- jQuery -->
 <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+<?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
 <?php /**PATH C:\laragon\www\smartecpos\resources\views/layouts/master.blade.php ENDPATH**/ ?>

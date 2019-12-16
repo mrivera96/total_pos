@@ -14,15 +14,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($suppliers as $supplier)
+                @foreach($suppliers as $supplr)
                     <tr style="cursor: pointer"
-                        onclick="window.location.href='{{route('supplier.show', $supplier->id)}}'">
-                        <th scope="row">{{$supplier->id}}</th>
-                        <td scope="row">{{$supplier->name}}</td>
-                        <td scope="row">{{$supplier->description}}</td>
-                        <td scope="row">{{$supplier->phone_number}}</td>
-                        <td scope="row">{{$supplier->address}}</td>
-                        <td scope="row">{{$supplier->email}}</td>
+                        onclick="window.location.href='{{route('supplier.show', $supplr->id)}}'">
+                        <th scope="row">{{$supplr->id}}</th>
+                        <td scope="row">{{$supplr->name}}</td>
+                        <td scope="row">{{$supplr->description}}</td>
+                        <td scope="row">{{$supplr->phone_number}}</td>
+                        <td scope="row">{{$supplr->address}}</td>
+                        <td scope="row">{{$supplr->email}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -33,4 +33,36 @@
             </div>
         </div>
     </div>
+    @includeWhen($create ?? '','suppliers.create')
+
+    @includeWhen($show?? '','suppliers.show')
+
+    @includeWhen($edit ?? '','suppliers.edit')
+
+@endsection
+@section('scripts')
+
+    @if($create ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#supplier-create-modal").modal('show');
+            });
+
+        </script>
+    @elseif($edit ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#supplier-edit-modal").modal('show');
+            });
+
+        </script>
+    @elseif($show ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#supplier-show-modal").modal('show');
+            });
+        </script>
+    @endif
+
+
 @endsection

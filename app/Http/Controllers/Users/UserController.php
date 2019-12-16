@@ -50,7 +50,14 @@ class UserController extends Controller
         $roles = Role::all();
         $branchs = Branch::all();
         $action = route('user.store');
-        return view('users.create', compact(['title','roles', 'branchs', 'action']));
+        $modal=true;
+        $modal_title=__('Nuevo Usuario');
+        $modal_id='user-create-modal';
+        $modal_close_route=route('user.index');
+        $create=true;
+        $users = User::where('status', 1)->get();
+        return view('users.index', compact(['title','users','roles', 'branchs', 'action',
+            'modal_close_route','modal','modal_title', 'modal_id','create']));
 
     }
 
@@ -116,8 +123,14 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $title = $user->name;
-
-        return view('users.show', compact(['title', 'user']));
+        $modal=true;
+        $modal_title=$user->name.' '.$user->last_name;
+        $modal_id='user-show-modal';
+        $modal_close_route=route('user.index');
+        $users = User::where('status', 1)->get();
+        $show=true;
+        return view('users.index', compact(['title', 'user','users', 'modal_close_route','modal',
+            'modal_title', 'modal_id','show']));
 
     }
 
@@ -131,8 +144,16 @@ class UserController extends Controller
     {
         $title = __('Editar Usuario');
         $action = route('user.update', $user);
+        $modal=true;
+        $modal_title=$user->name.' '.$user->last_name;
+        $modal_id='user-edit-modal';
+        $modal_close_route=route('user.index');
+        $users = User::where('status', 1)->get();
+        $edit=true;
 
-        return view('users.edit', compact(['title', 'user', 'action']));
+        return view('users.index', compact(['title', 'user', 'action',
+            'users', 'modal_close_route','modal',
+            'modal_title', 'modal_id','edit']));
     }
 
     /**

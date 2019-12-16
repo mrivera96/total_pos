@@ -13,5 +13,14 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <style>
+        .my-float{
+            position:relative;width:60px!important;height:60px!important;
+            bottom:15px !important;right:15px !important;color:#FFF;
+            border-radius:50px !important;text-align:center;
+            box-shadow: 2px 2px 3px #999 !important;
+        }
+    </style>
 </head>
 <?php /**PATH C:\laragon\www\smartecpos\resources\views/layouts/master_head.blade.php ENDPATH**/ ?>

@@ -46,8 +46,15 @@ class ProductsController extends Controller
         $action=route('product.store');
         $suppliers=Supplier::where('status',1)->get();
         $categories=ProductCategory::where('status',1)->get();
+        $create=true;
+        $products = Product::where('status', 1)->get();
+        $modal=true;
+        $modal_title=__('Nuevo Producto');
+        $modal_id='product-create-modal';
+        $modal_close_route=route('product.index');
 
-        return view('products.create', compact(['title', 'action', 'suppliers', 'categories']));
+        return view('products.index', compact(['title', 'action', 'suppliers', 'categories',
+            'create','products', 'modal_close_route','modal','modal_title', 'modal_id']));
     }
 
     /**
@@ -110,8 +117,18 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $title = $product->name;
+        $show=true;
+        $products = Product::where('status', 1)->get();
+        $modal=true;
+        $suppliers=Supplier::where('status',1)->get();
+        $categories=ProductCategory::where('status',1)->get();
+        $modal_title=$product->name;
+        $modal_id='product-show-modal';
+        $modal_close_route=route('product.index');
 
-        return view('products.show', compact(['title', 'product']));
+
+        return view('products.index', compact(['title', 'product','suppliers','categories',
+            'show','products', 'modal_close_route','modal','modal_title', 'modal_id']));
 
     }
 
@@ -128,8 +145,15 @@ class ProductsController extends Controller
         $action=route('product.update', $id);
         $suppliers=Supplier::where('status',1)->get();
         $categories=ProductCategory::where('status',1)->get();
+        $edit=true;
+        $products = Product::where('status', 1)->get();
+        $modal=true;
+        $modal_title=$product->name;
+        $modal_id='product-edit-modal';
+        $modal_close_route=route('product.index');
 
-        return view('products.edit', compact(['title', 'product', 'action', 'suppliers', 'categories']));
+        return view('products.index', compact(['title', 'product', 'action', 'suppliers', 'categories',
+            'edit','products', 'modal_close_route','modal','modal_title', 'modal_id']));
     }
 
 

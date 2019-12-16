@@ -1,35 +1,45 @@
 @extends('layouts.master')
 @section('content')
+
+
     <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">#</th>
                     <th scope="col">Nombre(s)</th>
                     <th scope="col">Apellido(s)</th>
-                    <th scope="col">Fecha de Nacimiento</th>
-                    <th scope="col">No. de Identidad</th>
+                    <th scope="col">Número Celular</th>
+                    <th scope="col">email</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($customers as $customer)
-                    <tr style="cursor: pointer" onclick="window.location.href='{{route('customer.show', $customer->id)}}'">
-                        <th scope="row">{{$customer->id}}</th>
-                        <td>{{$customer->name}}</td>
-                        <td>{{$customer->last_name}}</td>
-                        <td>{{$customer->birthday}}</td>
-                        <td>{{$customer->dni}}</td>
+                @foreach($customers as $cust)
+                    <tr style="cursor: pointer"
+                        onclick="window.location.href='{{route('customer.show', $cust->id)}}'">
+                        <th scope="row">{{$cust->id}}</th>
+                        <td>{{$cust->name}}</td>
+                        <td>{{$cust->last_name}}</td>
+                        <td>{{$cust->cellphone_number}}</td>
+                        <td>{{$cust->email ?? ''}}</td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
 
             <div class="mt-5">
-                <btn-new-customer-component></btn-new-customer-component>
-                <new-customer-component></new-customer-component>
+                <a href="{{route('customer.create')}}" class="btn btn-outline-primary">Nuevo Cliente</a>
             </div>
 
         </div>
     </div>
+
+    @includeWhen($create ?? '','customers.create')
+
+    @includeWhen($show?? '','customers.show')
+
+    @includeWhen($edit ?? '','customers.edit')
 @endsection
+
+

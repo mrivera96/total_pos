@@ -32,6 +32,16 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="pages/widgets.html" class="nav-link">
+                        <i class="nav-icon fas fa-store-alt"></i>
+                        <p>
+                            {{__('Punto de venta')}}
+                        </p>
+                    </a>
+                </li>
+
+
                 @if(auth()->user()->role->id==1 )
                     <li class="nav-item">
                         <a href="{{route('user.index')}}" class="nav-link">
@@ -42,15 +52,6 @@
                         </a>
                     </li>
                 @endif
-
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-store-alt"></i>
-                        <p>
-                            {{__('Punto de venta')}}
-                        </p>
-                    </a>
-                </li>
 
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">

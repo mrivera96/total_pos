@@ -1,6 +1,4 @@
-@extends('layouts.master')
-@section('content')
-    <div class="card ">
-        @include('users.form')
-    </div>
+@section('modal-content')
+    @include('users.form')
 @endsection
+

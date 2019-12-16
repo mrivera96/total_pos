@@ -43,7 +43,16 @@ class SuppliersController extends Controller
     {
         $title = 'Nuevo Proveedor';
         $action = route('supplier.store');
-        return view('suppliers.create', compact(['title', 'action']));
+        $create=true;
+        $suppliers = Supplier::where('status', 1)->get();
+        $modal=true;
+        $modal_title=__('Nuevo Proveedor');
+        $modal_id='supplier-create-modal';
+        $modal_close_route=route('supplier.index');
+
+        return view('suppliers.index', compact(['title', 'action'
+            ,'create','suppliers', 'modal_close_route','modal',
+            'modal_title', 'modal_id']));
     }
 
     /**
@@ -54,6 +63,7 @@ class SuppliersController extends Controller
      */
     public function store(StoreSupplierRequest $supplier)
     {
+        $title = 'Nuevo Proveedor';
         try{
             Supplier::insert($supplier->all(['name', 'description','phone_number', 'address', 'email']));
             $bg = 'success';
@@ -62,7 +72,6 @@ class SuppliersController extends Controller
             $btn = 'success';
             $route = route('supplier.index');
             $btn_text = __('Aceptar');
-            $title = 'Nuevo Proveedor';
 
             return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
 
@@ -73,7 +82,6 @@ class SuppliersController extends Controller
             $btn = 'warning';
             $route = url()->previous();
             $btn_text = __('Regresar');
-            $title = 'Nuevo Proveedor';
 
             return view('messages.messages', compact(['bg','alert','message','btn','route', 'btn_text', 'title']));
 
@@ -89,10 +97,16 @@ class SuppliersController extends Controller
      */
     public function show($id)
     {
-
         $supplier = Supplier::find($id);
         $title = $supplier->name;
-        return view('suppliers.show', compact(['title','supplier']));
+        $show=true;
+        $suppliers = Supplier::where('status', 1)->get();
+        $modal=true;
+        $modal_title=$supplier->name;
+        $modal_id='supplier-show-modal';
+        $modal_close_route=route('supplier.index');
+        return view('suppliers.index', compact(['title','supplier',
+            'show','suppliers', 'modal_close_route','modal','modal_title', 'modal_id']));
     }
 
     /**
@@ -105,7 +119,14 @@ class SuppliersController extends Controller
     {
         $title = 'Editar Proveedor';
         $action = route('supplier.update', $supplier);
-        return view('suppliers.edit', compact(['title', 'supplier', 'action']));
+        $edit=true;
+        $suppliers = Supplier::where('status', 1)->get();
+        $modal=true;
+        $modal_title=$supplier->name;
+        $modal_id='supplier-edit-modal';
+        $modal_close_route=route('supplier.index');
+        return view('suppliers.index', compact(['title', 'supplier',
+            'edit','suppliers', 'modal_close_route','modal','modal_title', 'modal_id','action']));
     }
 
     /**

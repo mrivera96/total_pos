@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <div class="card">
         <div class="card-body">
             <table class="table table-hover table-striped border-0 ">
@@ -36,4 +37,75 @@
             </div>
         </div>
     </div>
+
+    @includeWhen($create ?? '','products.create')
+
+    @includeWhen($show?? '','products.show')
+
+    @includeWhen($edit ?? '','products.edit')
+
 @endsection
+
+
+@section('scripts')
+
+    @if($create ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#product-create-modal").modal('show');
+            });
+
+            $('#avatar').change(function () {
+                var imgPath = $(this)[0].value;
+                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+                    readURL(this);
+                else
+                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(input.files[0]);
+                    reader.onload = function (e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+                }
+            }
+        </script>
+    @elseif($edit ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#product-edit-modal").modal('show');
+            });
+
+            $('#avatar').change(function () {
+                var imgPath = $(this)[0].value;
+                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+                    readURL(this);
+                else
+                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(input.files[0]);
+                    reader.onload = function (e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+                }
+            }
+        </script>
+    @elseif($show ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#product-show-modal").modal('show');
+            });
+        </script>
+    @endif
+
+@endsection
+

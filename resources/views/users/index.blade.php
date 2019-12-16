@@ -14,17 +14,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
-                    <tr style="cursor: pointer" onclick="window.location.href='{{route('user.show', $user->id)}}'">
-                        <th scope="row">{{$user->id}}</th>
+                @foreach($users as $usr)
+                    <tr style="cursor: pointer" onclick="window.location.href='{{route('user.show', $usr->id)}}'">
+                        <th scope="row">{{$usr->id}}</th>
                         <th scope="row">
-                            <img class="rounded-circle img-size-32"
-                                 src="@if(isset($user->avatar) && !empty($user->avatar)){{asset('img/'.$user->avatar)}}@else{{asset('img/profile.png')}}@endif">
+                            <img class="rounded-circle" style="width: 30px;height: 30px"
+                                 src="@if(isset($usr->avatar) && !empty($usr->avatar)){{asset('img/'.$usr->avatar)}}@else{{asset('img/profile.png')}}@endif">
                         </th>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->last_name}}</td>
-                        <td>{{$user->username}}</td>
-                        <td>{{$user->role->description}}</td>
+                        <td>{{$usr->name}}</td>
+                        <td>{{$usr->last_name}}</td>
+                        <td>{{$usr->username}}</td>
+                        <td>{{$usr->role->description}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -35,4 +35,72 @@
             </div>
         </div>
     </div>
+    @includeWhen($create ?? '','users.create')
+
+    @includeWhen($show?? '','users.show')
+
+    @includeWhen($edit ?? '','users.edit')
+@endsection
+
+@section('scripts')
+
+    @if($create ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#user-create-modal").modal('show');
+            });
+
+            $('#avatar').change(function () {
+                var imgPath = $(this)[0].value;
+                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+                    readURL(this);
+                else
+                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(input.files[0]);
+                    reader.onload = function (e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+                }
+            }
+        </script>
+    @elseif($edit ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#user-edit-modal").modal('show');
+            });
+
+            $('#avatar').change(function () {
+                var imgPath = $(this)[0].value;
+                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+                    readURL(this);
+                else
+                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
+            });
+
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(input.files[0]);
+                    reader.onload = function (e) {
+                        $('#preview').attr('src', e.target.result);
+                    }
+                }
+            }
+        </script>
+    @elseif($show ?? '')
+        <script>
+            $(document).ready(function () {
+                $("#user-show-modal").modal('show');
+            });
+        </script>
+    @endif
+
+
 @endsection

@@ -1,9 +1,9 @@
 @extends('auth.templates.index')
 
 @section('content')
-    <div class="col-md-6">
+    <div class="col-md-4 border-blue">
         <h1 class="text-center">SMARTEC POS</h1>
-        <div class="card ">
+        <div class="card rounded ">
             <div class="card-header bg-gradient-warning">{{ __('Login') }}</div>
 
             <div class="card-body">
