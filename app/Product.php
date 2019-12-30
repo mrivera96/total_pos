@@ -18,6 +18,8 @@ class Product extends Model
         'product_category_id',
         'status'];
 
+    protected $hidden = ['created_at','updated_at'];
+
 
     public function category()
     {

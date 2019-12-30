@@ -27,10 +27,14 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Productos';
         $products = Product::where('status', 1)->get();
+        if($request->ajax()){
+            return response()->json(['error'=>0,'products'=>$products],200);
+        }
+
 
         return view('products.index', compact(['title', 'products']));
     }

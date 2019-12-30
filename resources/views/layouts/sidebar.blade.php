@@ -1,8 +1,8 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-teal elevation-4">
     <!-- Brand Logo -->
-    <a href="{{route('dashboard')}}" class="brand-link">
-        <span class="brand-text font-weight-light">SMARTEC</span>
+    <a href="{{route('dashboard')}}" class="brand-link navbar-dark">
+        <span class="brand-text font-weight-light">POS</span>
     </a>
 
     <!-- Sidebar -->
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href="{{route('sale.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-store-alt"></i>
                         <p>
                             {{__('Punto de venta')}}
@@ -88,6 +88,14 @@
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{route('service.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-print"></i>
+                        <p>
+                            {{__('Servicios')}}
+                        </p>
+                    </a>
+                </li>
 
 
                 @if(auth()->user()->role->id==1 )

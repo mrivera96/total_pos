@@ -3,7 +3,7 @@
 <?php echo $__env->make('layouts.master_head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 
-<div class="wrapper">
+<div id="app" class="wrapper">
 
 <?php echo $__env->make('layouts.master_navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -18,13 +18,16 @@
         <div class="content">
             <div class="container-fluid">
                 <?php echo $__env->yieldContent('content'); ?>
+                <!-- route outlet -->
+                <!-- component matched by the route will render here -->
+                <router-view></router-view>
             </div>
         </div>
     </div>
 
 
     <footer class="main-footer">
-        <strong>Copyright &copy; 2019 <a href="#">SMARTEC DANLÍ</a>.</strong>
+        <strong>Copyright &copy; 2019 <a href="#">MELVIN RIVERA</a>.</strong>
         Todos los derechos reservados.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1.0.0

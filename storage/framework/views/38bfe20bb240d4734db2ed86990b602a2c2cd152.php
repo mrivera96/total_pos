@@ -92,7 +92,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="col-md-6">
             <label for="barcode"
                    class="col-md-12 col-form-label text-left"><?php echo e(__('Código de barra')); ?>:</label>
-            <input id="barcode" type="text" class="form-control <?php $__errorArgs = ['productname'];
+            <input id="barcode" type="text" class="form-control <?php $__errorArgs = ['barcode'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -119,7 +119,11 @@ unset($__errorArgs, $__bag); ?>
 
         <div class="col-md-6">
             <label for="cost" class="col-md-12 col-form-label text-left"><?php echo e(__('Costo')); ?>:</label>
-            <input id="cost" type="text" class="form-control <?php $__errorArgs = ['cost'];
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Lps.</span>
+                </div>
+                <input id="cost" type="text" class="form-control <?php $__errorArgs = ['cost'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -127,27 +131,34 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                   placeholder="<?php echo e(__('Ingresa el costo del producto.')); ?>" <?php if(!isset($action)): ?> readonly <?php endif; ?>
-                   value="<?php if($errors->any()): ?><?php echo e(old('cost')); ?><?php else: ?><?php echo e($product->cost ?? ''); ?><?php endif; ?>"
-                   name="cost" required>
+                       placeholder="<?php echo e(__('Ingresa el costo del producto.')); ?>" <?php if(!isset($action)): ?> readonly <?php endif; ?>
+                       value="<?php if($errors->any()): ?><?php echo e(old('cost')); ?><?php else: ?><?php echo e($product->cost ?? ''); ?><?php endif; ?>"
+                       name="cost" required>
 
-            <?php $__errorArgs = ['cost'];
+                <?php $__errorArgs = ['cost'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
-            <?php unset($message);
+                <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
+                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+            </div>
+
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-6">
             <label for="sale_price" class="col-md-12 col-form-label text-left"><?php echo e(__('Precio de venta')); ?>:</label>
-            <input id="sale_price" type="text" class="form-control <?php $__errorArgs = ['sale_price'];
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Lps.</span>
+                </div>
+                <input id="sale_price" type="text" class="form-control <?php $__errorArgs = ['sale_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -155,19 +166,20 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                   value="<?php if($errors->any()): ?><?php echo e(old('sale_price')); ?><?php else: ?><?php echo e($product->sale_price ?? ''); ?><?php endif; ?>"
-                   placeholder="<?php echo e(__('Ingresa el precio de venta del producto.')); ?>"
-                   name="sale_price" <?php if(!isset($action)): ?> readonly <?php endif; ?> required>
-            <?php $__errorArgs = ['sale_price'];
+                       value="<?php if($errors->any()): ?><?php echo e(old('sale_price')); ?><?php else: ?><?php echo e($product->sale_price ?? ''); ?><?php endif; ?>"
+                       placeholder="<?php echo e(__('Ingresa el precio de venta del producto.')); ?>"
+                       name="sale_price" <?php if(!isset($action)): ?> readonly <?php endif; ?> required>
+                <?php $__errorArgs = ['sale_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-            <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
-            <?php unset($message);
+                <span class="invalid-feedback" role="alert"><strong><?php echo e($message); ?></strong></span>
+                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+            </div>
         </div>
 
         <div class="col-md-6">
@@ -288,4 +300,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </form>
-<?php /**PATH C:\laragon\www\smartecpos\resources\views/products/form.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\smartecpos\resources\views/products/new_form.blade.php ENDPATH**/ ?>

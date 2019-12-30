@@ -29,7 +29,7 @@
             </table>
 
             <div class="mt-5">
-                <a href="{{route('customer.create')}}" class="btn btn-outline-primary">Nuevo Cliente</a>
+                <a href="{{route('customer.create')}}" class="btn btn-success">Nuevo Cliente</a>
             </div>
 
         </div>

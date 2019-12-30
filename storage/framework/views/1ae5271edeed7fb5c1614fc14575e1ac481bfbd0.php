@@ -164,4 +164,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </form>
-<?php /**PATH C:\laragon\www\smartecpos\resources\views/suppliers/form.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\smartecpos\resources\views/suppliers/new_form.blade.php ENDPATH**/ ?>

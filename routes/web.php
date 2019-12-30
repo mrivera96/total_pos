@@ -14,6 +14,7 @@
 Route::get('/', function () {
    return redirect('/login');
 });
+
 Route::resource('/user', 'Users\UserController');
 
 Route::resource('/category', 'Categories\ProductCategoriesController');
@@ -23,6 +24,14 @@ Route::resource('/supplier', 'Suppliers\SuppliersController');
 Route::resource('/product', 'Products\ProductsController');
 
 Route::resource('/customer','Customers\CustomersController');
+
+Route::resource('/sale','Sales\SalesController');
+
+Route::resource('/service','Services\ServicesController');
+
+Route::resource('/role','Roles\RoleController');
+
+Route::resource('/branch','Branches\BranchController');
 
 Auth::routes();
 

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 45);
             $table->string('username', 15)->unique();
             $table->string('avatar')->nullable();
-            $table->bigInteger('dni')->unique();
+            $table->string('dni',13)->unique();
             $table->date('birthday');
             $table->dateTime('register_date');
             $table->bigInteger('mobile')->unique();

@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <div class="row justify-content-center modal-dialog-centered">
+    <div class="col-md-12 ">
         <?php echo $__env->yieldContent('content'); ?>
     </div>
 </div>

@@ -29,7 +29,7 @@
             </table>
 
             <div class="mt-5">
-                <a href="{{route('supplier.create')}}" class="btn btn-outline-primary">Nuevo proveedor</a>
+                <a href="{{route('supplier.create')}}" class="btn btn-success">Nuevo proveedor</a>
             </div>
         </div>
     </div>

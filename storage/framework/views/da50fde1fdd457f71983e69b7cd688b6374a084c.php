@@ -392,4 +392,4 @@ unset($__errorArgs, $__bag); ?>
 </form>
 
 
-<?php /**PATH C:\laragon\www\smartecpos\resources\views/users/form.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\laragon\www\smartecpos\resources\views/users/new_form.blade.php ENDPATH**/ ?>

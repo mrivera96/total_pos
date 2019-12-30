@@ -102,7 +102,7 @@ unset($__errorArgs, $__bag); ?>"
 
 
             <div class="mt-5">
-                <a data-toggle="modal" data-target="#create" class="btn btn-outline-primary">Nueva categoría</a>
+                <a data-toggle="modal" data-target="#create" class="btn btn-success">Nueva categoría</a>
             </div>
             <div class="modal fade" id="create" tabindex="-1" role="dialog"
                  aria-hidden="true">

@@ -8,9 +8,10 @@
                     <tr>
                         <th scope="col"># </th>
                         <th></th>
-                        <th scope="col">{{__('Nombre         ')}} </th>
-                        <th scope="col">{{__('Descripción    ')}} </th>
-                        <th scope="col">{{__('Categoría      ')}} </th>
+                        <th scope="col">{{__('Nombre')}} </th>
+                        <th scope="col">{{__('Descripción')}} </th>
+                        <th scope="col">{{__('Categoría')}} </th>
+                        <th scope="col">{{__('Proveedor')}} </th>
                         <th scope="col">{{__('Código de barra')}} </th>
                         <th scope="col">{{__('En existencia  ')}} </th>
                     </tr>
@@ -25,6 +26,7 @@
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->category->description}}</td>
+                            <td>{{$product->supplier->name}}</td>
                             <td>{{$product->barcode}}</td>
                             <td>{{$product->in_stock}}</td>
                         </tr>
@@ -33,7 +35,7 @@
             </table>
 
             <div class="mt-5">
-                <a href="{{route('product.create')}}" class="btn btn-outline-primary">{{__('Nuevo Producto')}}</a>
+                <a href="{{route('product.create')}}" class="btn btn-success">{{__('Nuevo Producto')}}</a>
             </div>
         </div>
     </div>

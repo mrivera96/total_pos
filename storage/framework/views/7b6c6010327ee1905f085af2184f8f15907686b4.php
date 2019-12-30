@@ -7,9 +7,10 @@
                     <tr>
                         <th scope="col"># </th>
                         <th></th>
-                        <th scope="col"><?php echo e(__('Nombre         ')); ?> </th>
-                        <th scope="col"><?php echo e(__('Descripción    ')); ?> </th>
-                        <th scope="col"><?php echo e(__('Categoría      ')); ?> </th>
+                        <th scope="col"><?php echo e(__('Nombre')); ?> </th>
+                        <th scope="col"><?php echo e(__('Descripción')); ?> </th>
+                        <th scope="col"><?php echo e(__('Categoría')); ?> </th>
+                        <th scope="col"><?php echo e(__('Proveedor')); ?> </th>
                         <th scope="col"><?php echo e(__('Código de barra')); ?> </th>
                         <th scope="col"><?php echo e(__('En existencia  ')); ?> </th>
                     </tr>
@@ -24,6 +25,7 @@
                             <td><?php echo e($product->name); ?></td>
                             <td><?php echo e($product->description); ?></td>
                             <td><?php echo e($product->category->description); ?></td>
+                            <td><?php echo e($product->supplier->name); ?></td>
                             <td><?php echo e($product->barcode); ?></td>
                             <td><?php echo e($product->in_stock); ?></td>
                         </tr>
@@ -32,7 +34,7 @@
             </table>
 
             <div class="mt-5">
-                <a href="<?php echo e(route('product.create')); ?>" class="btn btn-outline-primary"><?php echo e(__('Nuevo Producto')); ?></a>
+                <a href="<?php echo e(route('product.create')); ?>" class="btn btn-success"><?php echo e(__('Nuevo Producto')); ?></a>
             </div>
         </div>
     </div>

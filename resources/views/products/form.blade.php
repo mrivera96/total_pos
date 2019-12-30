@@ -57,7 +57,7 @@
         <div class="col-md-6">
             <label for="barcode"
                    class="col-md-12 col-form-label text-left">{{ __('Código de barra') }}:</label>
-            <input id="barcode" type="text" class="form-control @error('productname') is-invalid @enderror"
+            <input id="barcode" type="text" class="form-control @error('barcode') is-invalid @enderror"
                    placeholder="{{__('Ingresa el nombre de usuario sin espacios.')}}"
                    name="barcode" @if(!isset($action)) readonly @endif
                    value="@if($errors->any()){{ old('barcode')}}@else{{$product->barcode ?? ''}}@endif"
@@ -70,27 +70,39 @@
 
         <div class="col-md-6">
             <label for="cost" class="col-md-12 col-form-label text-left">{{ __('Costo') }}:</label>
-            <input id="cost" type="text" class="form-control @error('cost') is-invalid @enderror"
-                   placeholder="{{__('Ingresa el costo del producto.')}}" @if(!isset($action)) readonly @endif
-                   value="@if($errors->any()){{ old('cost')}}@else{{$product->cost ?? ''}}@endif"
-                   name="cost" required>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Lps.</span>
+                </div>
+                <input id="cost" type="text" class="form-control @error('cost') is-invalid @enderror"
+                       placeholder="{{__('Ingresa el costo del producto.')}}" @if(!isset($action)) readonly @endif
+                       value="@if($errors->any()){{ old('cost')}}@else{{$product->cost ?? ''}}@endif"
+                       name="cost" required>
 
-            @error('cost')
-            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-            @enderror
+                @error('cost')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
+
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-6">
             <label for="sale_price" class="col-md-12 col-form-label text-left">{{__('Precio de venta') }}:</label>
-            <input id="sale_price" type="text" class="form-control @error('sale_price') is-invalid @enderror"
-                   value="@if($errors->any()){{old('sale_price')}}@else{{$product->sale_price ?? ''}}@endif"
-                   placeholder="{{__('Ingresa el precio de venta del producto.')}}"
-                   name="sale_price" @if(!isset($action)) readonly @endif required>
-            @error('sale_price')
-            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-            @enderror
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Lps.</span>
+                </div>
+                <input id="sale_price" type="text" class="form-control @error('sale_price') is-invalid @enderror"
+                       value="@if($errors->any()){{old('sale_price')}}@else{{$product->sale_price ?? ''}}@endif"
+                       placeholder="{{__('Ingresa el precio de venta del producto.')}}"
+                       name="sale_price" @if(!isset($action)) readonly @endif required>
+                @error('sale_price')
+                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                @enderror
+            </div>
         </div>
 
         <div class="col-md-6">

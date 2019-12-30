@@ -28,7 +28,7 @@
             </table>
 
             <div class="mt-5">
-                <a href="<?php echo e(route('supplier.create')); ?>" class="btn btn-outline-primary">Nuevo proveedor</a>
+                <a href="<?php echo e(route('supplier.create')); ?>" class="btn btn-success">Nuevo proveedor</a>
             </div>
         </div>
     </div>
@@ -47,24 +47,6 @@
                 $("#supplier-create-modal").modal('show');
             });
 
-            $('#avatar').change(function () {
-                var imgPath = $(this)[0].value;
-                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
-                    readURL(this);
-                else
-                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
-            });
-
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(input.files[0]);
-                    reader.onload = function (e) {
-                        $('#preview').attr('src', e.target.result);
-                    }
-                }
-            }
         </script>
     <?php elseif($edit ?? ''): ?>
         <script>
@@ -72,24 +54,6 @@
                 $("#supplier-edit-modal").modal('show');
             });
 
-            $('#avatar').change(function () {
-                var imgPath = $(this)[0].value;
-                var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-                if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
-                    readURL(this);
-                else
-                    alert("Por favor, seleccione un archivo de imagen (jpg, jpeg, png).");
-            });
-
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(input.files[0]);
-                    reader.onload = function (e) {
-                        $('#preview').attr('src', e.target.result);
-                    }
-                }
-            }
         </script>
     <?php elseif($show ?? ''): ?>
         <script>

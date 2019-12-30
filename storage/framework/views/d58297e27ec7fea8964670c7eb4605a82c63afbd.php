@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
-    <div class="col-md-4 border-blue">
-        <h1 class="text-center">SMARTEC POS</h1>
+    <div class="col-md-4 border-blue mx-auto">
+        <h1 class="text-center">MANINEÑA POS</h1>
         <div class="card rounded ">
             <div class="card-header bg-gradient-warning"><?php echo e(__('Login')); ?></div>
 
